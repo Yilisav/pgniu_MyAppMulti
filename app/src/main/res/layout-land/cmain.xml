@@ -12,7 +12,6 @@
         android:id="@+id/imageHello"
         android:layout_width="519dp"
         android:layout_height="150dp"
-
         android:layout_marginLeft="120dp"
         android:layout_marginRight="120dp"
         app:layout_constraintEnd_toEndOf="parent"

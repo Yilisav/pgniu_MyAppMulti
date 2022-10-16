@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="SizeFontButton">18dp</dimen>
+    <dimen name="SizeFontButton">18sp</dimen>
+    <dimen name="margin">5dp</dimen>
+    <dimen name="padding">5dp</dimen>
 </resources>

@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">MyAppMulti</string>
-    <string name="calculator">калькулятор</string>
-    <string name="map">карта</string>
+    <string name="calculator"> КАЛЬКУЛЯТОР </string>
+    <string name="map"> КАРТА </string>
     <string name="about_title">О программе</string>
-    <string name="about">Приложение разработано\nв рамкам прохождения курса\n"Разработка приложений для Android (начальный уровень)\n(05 октября - 02 декабря 2022 г.)"
-    </string>
+    <string name="about">Приложение разработано\nв рамкам прохождения курса\n"Разработка приложений для Android (начальный уровень)\n(05 октября - 02 декабря 2022 г.)" </string>
     <string name="close">Закрыть</string>
-
-
+    <string name="clear">Очистить</string>
+    <string name="InputNumber">ввод числа</string>
 </resources>
