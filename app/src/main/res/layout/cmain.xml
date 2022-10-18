@@ -21,6 +21,7 @@
 
     <Button
         android:id="@+id/calc"
+        android:background="@drawable/btn_shape_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="25dp"
@@ -35,6 +36,7 @@
 
     <Button
         android:id="@+id/map"
+        android:background="@drawable/btn_shape_normal"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="25dp"
@@ -49,6 +51,7 @@
 
     <Button
         android:id="@+id/aboutButton"
+        android:background="@drawable/btn_shape_normal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"

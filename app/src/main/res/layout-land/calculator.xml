@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".CMainActivity">
+    tools:context=".Calculator">
 
     <!--Верхний слой название активити и кнопка выхода-->
     <LinearLayout
@@ -20,7 +20,7 @@
         >
         <!--название активити-->
         <TextView
-            android:id="@+id/nameActivity"
+            android:id="@+id/resultView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -38,6 +38,7 @@
         <!--кнопка закрыть-->
         <Button
             android:id="@+id/close"
+            android:background="@drawable/btn_shape_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
@@ -69,6 +70,7 @@
             android:layout_marginLeft="@dimen/margin"
             android:layout_marginRight="@dimen/margin"
             android:background="#E6E6E6"
+            android:textSize="25sp"
             android:text=""
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,22 +98,26 @@
             <!--кнопка очистить-->
             <Button
                 android:id="@+id/clear"
+                style="@style/ButtonStyleClear"
+                android:background="@drawable/btn_shape"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
                 android:fontFamily="@font/buxtonsketch"
-
+                android:layout_marginBottom="2sp"
                 android:text="@string/clear"
                 android:textSize="@dimen/SizeFontButton" />
-            <!--кнопка вывода результата операции с введенными числами-->
+            <!--кнопка  вывода стирание последнего знака-->
             <Button
-                android:id="@+id/result"
+                android:id="@+id/backSpace"
+                style="@style/ButtonStyleClear"
+                android:background="@drawable/btn_shape"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin"
                 android:layout_weight="0.5"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="="
+                android:text="C"
                 android:textSize="@dimen/SizeFontButton" />
 
         </TableRow>
@@ -124,16 +130,21 @@
             <!--кнопка вывода 1 -->
             <Button
                 android:id="@+id/one"
+                style="@style/ButtonStyle"
+                android:background="@drawable/btn_shape_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:layout_marginRight="@dimen/margin"
+                android:layout_marginBottom="2sp"
                 android:fontFamily="@font/buxtonsketch"
                 android:text="1"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода 2 -->
             <Button
                 android:id="@+id/two"
+                style="@style/ButtonStyle"
+                android:background="@drawable/btn_shape_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -144,6 +155,8 @@
             <!--кнопка вывода 3 -->
             <Button
                 android:id="@+id/three"
+                style="@style/ButtonStyle"
+                android:background="@drawable/btn_shape_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -155,6 +168,8 @@
 
             <Button
                 android:id="@+id/multiplication"
+                style="@style/ButtonStyleOperation"
+                android:background="@drawable/btn_shape_operation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -172,6 +187,8 @@
             <!--кнопка вывода 4 -->
             <Button
                 android:id="@+id/four"
+                style="@style/ButtonStyle"
+                android:background="@drawable/btn_shape_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -182,16 +199,21 @@
             <!--кнопка вывода 5 -->
             <Button
                 android:id="@+id/five"
+                style="@style/ButtonStyle"
+                android:background="@drawable/btn_shape_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:layout_marginRight="@dimen/margin"
+                android:layout_marginBottom="2sp"
                 android:fontFamily="@font/buxtonsketch"
                 android:text="5"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода 6 -->
             <Button
                 android:id="@+id/six"
+                style="@style/ButtonStyle"
+                android:background="@drawable/btn_shape_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -202,6 +224,8 @@
             <!--кнопка вывода результата операции деления с введенными числами-->
             <Button
                 android:id="@+id/division"
+                style="@style/ButtonStyleOperation"
+                android:background="@drawable/btn_shape_operation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -219,16 +243,21 @@
             <!--кнопка вывода 7 -->
             <Button
                 android:id="@+id/seven"
+                style="@style/ButtonStyle"
+                android:background="@drawable/btn_shape_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:layout_marginRight="@dimen/margin"
+                android:layout_marginBottom="2sp"
                 android:fontFamily="@font/buxtonsketch"
                 android:text="7"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода 8 -->
             <Button
                 android:id="@+id/eight"
+                style="@style/ButtonStyle"
+                android:background="@drawable/btn_shape_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -239,6 +268,8 @@
             <!--кнопка вывода 9 -->
             <Button
                 android:id="@+id/nine"
+                style="@style/ButtonStyle"
+                android:background="@drawable/btn_shape_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -249,6 +280,8 @@
             <!--кнопка вывода результата операции суммы с введенными числами-->
             <Button
                 android:id="@+id/summa"
+                style="@style/ButtonStyleOperation"
+                android:background="@drawable/btn_shape_operation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -266,6 +299,8 @@
             <!--кнопка вывода точки -->
             <Button
                 android:id="@+id/dot"
+                style="@style/ButtonStyle"
+                android:background="@drawable/btn_shape_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -276,6 +311,8 @@
             <!--кнопка вывода 0 -->
             <Button
                 android:id="@+id/zero"
+                style="@style/ButtonStyle"
+                android:background="@drawable/btn_shape_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -283,19 +320,23 @@
                 android:fontFamily="@font/buxtonsketch"
                 android:text="0"
                 android:textSize="@dimen/SizeFontButton" />
-            <!--кнопка вывода стирание последнего знака -->
+            <!--кнопка вывода результата операции с введенными числами -->
             <Button
-                android:id="@+id/backSpace"
+                android:id="@+id/result"
+                style="@style/ButtonStyleClear"
+                android:background="@drawable/btn_shape_normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:layout_marginRight="@dimen/margin"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="C"
+                android:text="="
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода результата операции разности с введенными числами-->
             <Button
                 android:id="@+id/difference"
+                style="@style/ButtonStyleOperation"
+                android:background="@drawable/btn_shape_operation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"

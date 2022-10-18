@@ -12,12 +12,14 @@ import net.objecthunter.exp4j.ExpressionBuilder
 
 class Calculator : AppCompatActivity(){
     @SuppressLint("MissingInflatedId")
+
+    // перменные для отображения на экранах ввода и ввода
+    var outScreen = "КАЛЬКУЛЯТОР"
+    var inScreen = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.calculator)
-
-
-
 
         // удаление последнего символав строке
         fun removeLastChar(str: String?): String? {
@@ -28,7 +30,7 @@ class Calculator : AppCompatActivity(){
         @SuppressLint("ShowToast")
         fun outToScreenCalculator (char: String = "", anyString: String = ""): String {
             var anyStringChange: String = ""
-            if (anyString.count()<= 40) {anyStringChange = anyString + char
+            if (anyString.count()<= 24) {anyStringChange = anyString + char
             } else {
                 Toast.makeText(applicationContext, "слишком длинное выражение", Toast.LENGTH_SHORT).show()
                 anyStringChange = anyString
@@ -36,8 +38,11 @@ class Calculator : AppCompatActivity(){
             return anyStringChange
         }
 
-
-//        обяъявление переменных
+        // обяъявление переменных
+        // поле ввода
+        val editTextInput: TextView = findViewById<TextView?>(R.id.editTextInput)
+        // поле вывода
+        val textView: TextView = findViewById(R.id.resultView)
         // кнопки
         val buttonClose : Button = findViewById(R.id.close)
         val buttonOne : Button = findViewById(R.id.one)
@@ -59,58 +64,104 @@ class Calculator : AppCompatActivity(){
         val buttonClear : Button = findViewById(R.id.clear)
         val buttonResult : Button = findViewById(R.id.result)
 
-        // поле ввода
-        val editTextInput: TextView = findViewById(R.id.editTextInput)
-
-        // поле вывода
-        val textView: TextView = findViewById(R.id.nameActivity)
-
-
-
         // выход из ативности
         buttonClose.setOnClickListener{
             finish()
             }
         // очистка
         buttonClear.setOnClickListener {
-            textView.setText("КАЛЬКУЛЯТОР")
-            editTextInput.setText("")
+            outScreen = "КАЛЬКУЛЯТОР"
+            inScreen = ""
+            textView.setText(outScreen)
+            editTextInput.setText(inScreen)
         }
         // ввод  с клвиатуры и ввыдод на экран калькулятора
-        buttonOne.setOnClickListener {editTextInput.setText(outToScreenCalculator("1", editTextInput.text.toString()).toString())}
-        buttonTwo.setOnClickListener {editTextInput.setText(outToScreenCalculator("2", editTextInput.text.toString()).toString()) }
-        buttonThree.setOnClickListener {editTextInput.setText(outToScreenCalculator("3", editTextInput.text.toString()).toString()) }
-        buttonFour.setOnClickListener {editTextInput.setText(outToScreenCalculator("4", editTextInput.text.toString()).toString()) }
-        buttonFive.setOnClickListener {editTextInput.setText(outToScreenCalculator("5", editTextInput.text.toString()).toString()) }
-        buttonSix.setOnClickListener {editTextInput.setText(outToScreenCalculator("6", editTextInput.text.toString()).toString()) }
-        buttonSeven.setOnClickListener {editTextInput.setText(outToScreenCalculator("7", editTextInput.text.toString()).toString()) }
-        buttonEight.setOnClickListener {editTextInput.setText(outToScreenCalculator("8", editTextInput.text.toString()).toString()) }
-        buttonNine.setOnClickListener {editTextInput.setText(outToScreenCalculator("9", editTextInput.text.toString()).toString()) }
-        buttonZero.setOnClickListener {editTextInput.setText(outToScreenCalculator("0", editTextInput.text.toString()).toString()) }
-        buttonDot.setOnClickListener {editTextInput.setText(outToScreenCalculator(".", editTextInput.text.toString()).toString()) }
-        buttonMultiplication.setOnClickListener {editTextInput.setText(outToScreenCalculator("*", editTextInput.text.toString()).toString()) }
-        buttonDivision.setOnClickListener {editTextInput.setText(outToScreenCalculator("/", editTextInput.text.toString()).toString())}
-        buttonSumma.setOnClickListener {editTextInput.setText(outToScreenCalculator("+", editTextInput.text.toString()).toString()) }
-        buttonDifference.setOnClickListener {editTextInput.setText(outToScreenCalculator("-", editTextInput.text.toString()).toString())   }
+        buttonOne.setOnClickListener {
+            inScreen = outToScreenCalculator("1", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonTwo.setOnClickListener {
+            inScreen = outToScreenCalculator("2", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonThree.setOnClickListener {
+            inScreen = outToScreenCalculator("3", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonFour.setOnClickListener {
+            inScreen = outToScreenCalculator("4", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonFive.setOnClickListener {
+            inScreen = outToScreenCalculator("5", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonSix.setOnClickListener {
+            inScreen = outToScreenCalculator("6", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonSeven.setOnClickListener {
+            inScreen = outToScreenCalculator("7", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonEight.setOnClickListener {
+            inScreen = outToScreenCalculator("8", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonNine.setOnClickListener {
+            inScreen = outToScreenCalculator("9", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonZero.setOnClickListener {
+            inScreen = outToScreenCalculator("0", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonDot.setOnClickListener {
+            inScreen = outToScreenCalculator(".", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonMultiplication.setOnClickListener {
+            inScreen = outToScreenCalculator("*", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonDivision.setOnClickListener {
+            inScreen = outToScreenCalculator("/", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonSumma.setOnClickListener {
+            inScreen = outToScreenCalculator("+", inScreen)
+            editTextInput.setText(inScreen)}
+        buttonDifference.setOnClickListener {
+            inScreen = outToScreenCalculator("-", inScreen)
+            editTextInput.setText(inScreen)}
         // удаление последнего введенного знака
         buttonBackSpace.setOnClickListener {
-            val valuestr1 = removeLastChar(editTextInput.text.toString())
-            println(valuestr1)
-            editTextInput.setText(valuestr1)
+            inScreen = removeLastChar(inScreen).toString()
+            editTextInput.setText(inScreen)
         }
+        // вывод  результат операции
         buttonResult.setOnClickListener {
-            val screen = editTextInput.text.toString()
-            val expression = ExpressionBuilder(screen).build()
-            val resultStr = expression.evaluate()
-            val longResult = resultStr.toLong()
-            if (resultStr == longResult.toDouble()) {
-                textView.setText(longResult.toString())
-            } else {
-                textView.setText(resultStr.toString())
+            outScreen = editTextInput.text.toString()
+            if (outScreen == "")
+            { android.widget.Toast.makeText(applicationContext, "в строке ввода пусто", android.widget.Toast.LENGTH_SHORT).show()}
+            else {
+                val expression = ExpressionBuilder(outScreen).build()
+                val resultStr = expression.evaluate()
+                val longResult = resultStr.toLong()
+                if (resultStr == longResult.toDouble()) {
+                    outScreen = longResult.toString()
+                    textView.setText(outScreen)
+                } else {
+                    outScreen =resultStr.toString()
+                    textView.setText(outScreen)
+                }
             }
         }
 
 
         }
+    // Сохраняем состояние экранов
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("input",inScreen)
+        outState.putString("output",outScreen)
     }
+    // Восстанавливаем состояние экранов
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        inScreen = savedInstanceState.getString("input", "")
+        outScreen = savedInstanceState.getString("output", "")
+        val editTextInput: TextView = findViewById(R.id.editTextInput)
+        val textView: TextView = findViewById(R.id.resultView)
+        textView.setText(outScreen)
+        editTextInput.setText(inScreen)
+    }
+}
 
