@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:fontFamily="@font/mistral"
-        android:text="О программе"
+        android:text="@string/about_title"
         android:textColor="#000000"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"

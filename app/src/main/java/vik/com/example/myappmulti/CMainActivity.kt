@@ -13,7 +13,7 @@ class CMainActivity : AppCompatActivity() {
         setContentView(R.layout.cmain)
 
         val buttonCalculator: Button = findViewById(R.id.calc)
-        val buttonMap: Button = findViewById(R.id.map)
+      //  val buttonMap: Button = findViewById(R.id.map)
         val buttonAbout: Button = findViewById(R.id.aboutButton)
 
         buttonAbout.setOnClickListener {

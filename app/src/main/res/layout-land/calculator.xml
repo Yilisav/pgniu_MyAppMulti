@@ -25,10 +25,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginTop="1dp"
-            android:layout_marginLeft="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
             android:background="@color/grey_200"
             android:fontFamily="@font/buxtonsketch"
-            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
             android:paddingTop="5dp"
             android:paddingBottom="5dp"
             android:text="@string/calculator"
@@ -114,10 +115,11 @@
                 android:background="@drawable/btn_shape"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:layout_weight="0.5"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="C"
+                android:text="@string/bt_backSpace"
                 android:textSize="@dimen/SizeFontButton" />
 
         </TableRow>
@@ -135,10 +137,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:layout_marginBottom="2sp"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="1"
+                android:text="@string/bt_one"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода 2 -->
             <Button
@@ -148,9 +151,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="2"
+                android:text="@string/bt_two"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода 3 -->
             <Button
@@ -160,9 +164,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="3"
+                android:text="@string/bt_three"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода результата операции умножения с введенными числами-->
 
@@ -174,7 +179,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="X"
+                android:text="@string/bt_multiplication"
                 android:textSize="@dimen/SizeFontButton" />
 
         </TableRow>
@@ -192,9 +197,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="4"
+                android:text="@string/bt_four"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода 5 -->
             <Button
@@ -204,10 +210,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:layout_marginBottom="2sp"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="5"
+                android:text="@string/bt_five"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода 6 -->
             <Button
@@ -217,9 +224,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="6"
+                android:text="@string/bt_six"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода результата операции деления с введенными числами-->
             <Button
@@ -230,7 +238,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="/"
+                android:text="@string/bt_division"
                 android:textSize="@dimen/SizeFontButton" />
 
         </TableRow>
@@ -248,10 +256,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:layout_marginBottom="2sp"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="7"
+                android:text="@string/bt_seven"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода 8 -->
             <Button
@@ -261,9 +270,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="8"
+                android:text="@string/bt_eight"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода 9 -->
             <Button
@@ -273,9 +283,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="9"
+                android:text="@string/bt_nine"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода результата операции суммы с введенными числами-->
             <Button
@@ -286,7 +297,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="+"
+                android:text="@string/bt_summa"
                 android:textSize="@dimen/SizeFontButton" />
 
         </TableRow>
@@ -304,9 +315,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="."
+                android:text="@string/bt_dot"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода 0 -->
             <Button
@@ -316,9 +328,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="0"
+                android:text="@string/bt_zero"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода результата операции с введенными числами -->
             <Button
@@ -328,9 +341,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:layout_marginRight="@dimen/margin"
+                android:layout_marginStart="@dimen/margin"
+                android:layout_marginEnd="@dimen/margin"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="="
+                android:text="@string/bt_result"
                 android:textSize="@dimen/SizeFontButton" />
             <!--кнопка вывода результата операции разности с введенными числами-->
             <Button
@@ -341,7 +355,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:fontFamily="@font/buxtonsketch"
-                android:text="-"
+                android:text="@string/bt_difference"
                 android:textSize="@dimen/SizeFontButton" />
 
         </TableRow>

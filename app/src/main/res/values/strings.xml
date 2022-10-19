@@ -1,10 +1,29 @@
 <resources>
     <string name="app_name">MyAppMulti</string>
-    <string name="calculator"> КАЛЬКУЛЯТОР </string>
-    <string name="map"> КАРТА </string>
-    <string name="about_title">О программе</string>
-    <string name="about">Приложение разработано\nв рамкам прохождения курса\n"Разработка приложений для Android (начальный уровень)\n(05 октября - 02 декабря 2022 г.)"\n\n\n </string>
-    <string name="close">Закрыть</string>
-    <string name="clear">Очистить</string>
-    <string name="InputNumber">ввод числа</string>
+    <string name="calculator">CALCULATOR</string>
+    <string name="map">MAP</string>
+    <string name="about">"The application was developed as part of the course Development of applications for Android (Junior) (05.10.2022 – 02.12.2022 г.)    "</string>
+    <string name="close">Close</string>
+    <string name="clear">Clear</string>
+    <string name="InputNumber">input number</string>
+    <string name="about_title">About</string>
+    <string name="bt_backSpace">C</string>
+    <string name="bt_one">1</string>
+    <string name="bt_two">2</string>
+    <string name="bt_three">3</string>
+    <string name="bt_multiplication">X</string>
+    <string name="bt_four">4</string>
+    <string name="bt_five">5</string>
+    <string name="bt_six">6</string>
+    <string name="bt_division">/</string>
+    <string name="bt_seven">7</string>
+    <string name="bt_eight">8</string>
+    <string name="bt_nine">9</string>
+    <string name="bt_summa">+</string>
+    <string name="bt_dot">.</string>
+    <string name="bt_zero">0</string>
+    <string name="bt_result">=</string>
+    <string name="bt_difference">-</string>
+    <string name="mes_longExpression">too long expression</string>
+    <string name="mes_empty">input line is empty</string>
 </resources>
