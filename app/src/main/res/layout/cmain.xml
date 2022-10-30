@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".CMainActivity">
+    tools:context=".activities.CMainActivity">
 
 
     <ImageView
@@ -13,53 +14,108 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
+        android:contentDescription="@string/app_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/main_back_image"
-        android:contentDescription="@string/app_name" />
+        app:srcCompat="@drawable/main_back_image" />
 
-    <Button
-        android:id="@+id/calc"
-        android:background="@drawable/btn_shape_normal"
-        android:layout_width="wrap_content"
+
+
+    <!--    <Button-->
+    <!--        android:id="@+id/calc"-->
+    <!--        android:background="@drawable/btn_shape_normal"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginRight="25dp"-->
+    <!--        android:layout_marginLeft="25dp"-->
+    <!--        android:fontFamily="@font/buxtonsketch"-->
+    <!--        android:textSize="@dimen/SizeFontButton"-->
+    <!--        android:text="@string/calculator"-->
+    <!--        android:paddingLeft="10dp"-->
+    <!--        android:paddingRight="10dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toStartOf="@+id/map"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/map"-->
+    <!--        android:background="@drawable/btn_shape_normal"-->
+    <!--        android:layout_width="150dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginStart="25dp"-->
+    <!--        android:layout_marginEnd="25dp"-->
+    <!--        android:fontFamily="@font/buxtonsketch"-->
+    <!--        android:textSize="@dimen/SizeFontButton"-->
+    <!--        android:text="@string/map"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.5"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/calc"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/loginInText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp"
-        android:fontFamily="@font/buxtonsketch"
-        android:textSize="@dimen/SizeFontButton"
-        android:text="@string/calculator"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/map"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginTop="-40dp"
+        android:maxWidth="200dp"
+        android:hint="@string/login"
+        app:layout_constraintTop_toBottomOf="@+id/imageHello"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/map"
-        android:background="@drawable/btn_shape_normal"
-        android:layout_width="150dp"
+        >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/passwordInText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:fontFamily="@font/buxtonsketch"
-        android:textSize="@dimen/SizeFontButton"
-        android:text="@string/map"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/calc"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:maxWidth="200dp"
+        android:hint="@string/password"
+        app:endIconMode="password_toggle"
+        app:layout_constraintTop_toBottomOf="@+id/loginInText"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/aboutButton"
-        android:background="@drawable/btn_shape_normal"
+        android:id="@+id/enterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="25dp"
+        android:background="@drawable/btn_shape_normal"
+        android:fontFamily="@font/buxtonsketch"
+        android:text="@string/enter"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/aboutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/btn_shape_normal"
         android:fontFamily="@font/buxtonsketch"
         android:text="@string/about_title"
         app:layout_constraintBottom_toBottomOf="parent"

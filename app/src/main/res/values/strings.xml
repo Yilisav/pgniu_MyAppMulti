@@ -6,7 +6,7 @@
     <string name="close">Close</string>
     <string name="clear">Clear</string>
     <string name="InputNumber">input number</string>
-    <string name="about_title">About</string>
+    <string name="about_title"><b>About</b></string>
     <string name="bt_backSpace" translatable="false">C</string>
     <string name="bt_one" translatable="false">1</string>
     <string name="bt_two" translatable="false">2</string>
@@ -26,4 +26,7 @@
     <string name="bt_difference" translatable="false">-</string>
     <string name="mes_longExpression">too long expression</string>
     <string name="mes_empty">input line is empty</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="enter">Enter</string>
 </resources>

@@ -1,4 +1,4 @@
-package vik.com.example.myappmulti
+package vik.com.example.myappmulti.activities
 
 
 import android.annotation.SuppressLint
@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import net.objecthunter.exp4j.ExpressionBuilder
+import vik.com.example.myappmulti.R
 
 
 class CCalculator : AppCompatActivity(){

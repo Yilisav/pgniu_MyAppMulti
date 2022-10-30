@@ -15,7 +15,7 @@
 
 <!--        главная активность-->
         <activity
-            android:name=".CMainActivity"
+            android:name=".activities.CMainActivity"
             android:theme="@style/Theme.My"
             android:exported="true">
             <intent-filter>
@@ -27,23 +27,10 @@
 
 <!--        активность калькулятор-->
         <activity
-            android:name=".CCalculator"
+            android:name=".activities.CCalculator"
             android:theme="@style/Theme.MyAppMulti"
             android:exported="false"
 
-            >
-            <intent-filter>
-                <action android:name = "package.OtherActivity"/>
-
-                <category android:name = "android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-<!--        активность о программе-->
-        <activity
-            android:name=".CAbout"
-            android:theme="@style/Theme.MyAppMulti"
-            android:exported="false"
             >
             <intent-filter>
                 <action android:name = "package.OtherActivity"/>
@@ -54,8 +41,8 @@
 
 <!--        активность карта -->
         <activity
-            android:name=".CMap"
-            android:theme="@style/Theme.MyAppMulti"
+            android:name=".activities.CMap"
+            android:theme="@style/Theme.My"
             android:exported="false"
             >
             <intent-filter>
@@ -65,6 +52,20 @@
             </intent-filter>
         </activity>
 
+        <!--        активность о программе-->
+        <activity
+            android:name=".activities.CAbout"
+            android:label="@string/about_title"
+            android:gravity="center"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:exported="false"
+            >
+            <intent-filter>
+                <action android:name = "package.OtherActivity"/>
+
+                <category android:name = "android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
     </application>
 
