@@ -10,11 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyAppMulti"
+
         tools:targetApi="31">
 
+<!--        главная активность-->
         <activity
             android:name=".CMainActivity"
+            android:theme="@style/Theme.My"
             android:exported="true">
             <intent-filter>
                 <action android:name = "android.intent.action.MAIN"/>
@@ -23,8 +25,10 @@
             </intent-filter>
         </activity>
 
+<!--        активность калькулятор-->
         <activity
-            android:name=".Calculator"
+            android:name=".CCalculator"
+            android:theme="@style/Theme.MyAppMulti"
             android:exported="false"
 
             >
@@ -35,8 +39,23 @@
             </intent-filter>
         </activity>
 
+<!--        активность о программе-->
         <activity
-            android:name=".About"
+            android:name=".CAbout"
+            android:theme="@style/Theme.MyAppMulti"
+            android:exported="false"
+            >
+            <intent-filter>
+                <action android:name = "package.OtherActivity"/>
+
+                <category android:name = "android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+<!--        активность карта -->
+        <activity
+            android:name=".CMap"
+            android:theme="@style/Theme.MyAppMulti"
             android:exported="false"
             >
             <intent-filter>

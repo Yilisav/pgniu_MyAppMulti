@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mMap"
+        android:icon="@drawable/ic_map_24"
+        android:title="@string/map"
+        app:showAsAction="never" />
+    <item android:id="@+id/mCalculator"
+        android:icon="@drawable/ic_calculate_24"
+        android:title="@string/calculator"
+        app:showAsAction="never" />
+    <item android:id="@+id/mAbout"
+        android:icon="@drawable/ic_about_24"
+        android:title="@string/about_title"
+        app:showAsAction="never" />
+</menu>
