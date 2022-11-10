@@ -22,11 +22,26 @@ class CMap : AppCompatActivity() {
     }
     // обработка кнопок меню
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        var login : String = ""
+
+        if (intent.extras==null)
+        {
+            Toast.makeText(this, "login empty !", Toast.LENGTH_SHORT).show()
+        } else {
+            login = intent.extras!!.getString("MY_LOGIN").toString()
+        }
         // Handle item selection
         return when (item.itemId) {
 
             R.id.mName -> {
-                Toast.makeText(this, " {user.name}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, login, Toast.LENGTH_SHORT).show()
+//                resultLauncher.launch(activityCalculator)
+                true
+            }
+            R.id.mCalculator -> {
+                val activityCalculator = Intent(this, CCalculator::class.java)
+                startActivity(activityCalculator)
 //                resultLauncher.launch(activityCalculator)
                 true
             }

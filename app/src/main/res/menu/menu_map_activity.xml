@@ -8,6 +8,10 @@
     <item android:id="@+id/mName"
         android:title="Name"
         app:showAsAction="never" />
+    <item android:id="@+id/mCalculator"
+        android:icon="@drawable/ic_calculate_24"
+        android:title="@string/calculator"
+        app:showAsAction="never" />
     <item android:id="@+id/mAbout"
         android:icon="@drawable/ic_about_24"
         android:title="@string/about_title"

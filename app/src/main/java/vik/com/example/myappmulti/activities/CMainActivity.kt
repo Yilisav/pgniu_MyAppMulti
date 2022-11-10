@@ -9,66 +9,46 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.TextView
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.widget.doOnTextChanged
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import vik.com.example.myappmulti.R
+import vik.com.example.myappmulti.databinding.CalculatorBinding
+import vik.com.example.myappmulti.databinding.CmainBinding
 import vik.com.example.myappmulti.person.CPersone
 
 
 class CMainActivity : AppCompatActivity() {
 
-//    private val activityMap = Intent(this, CMap::class.java)
-//    private val activityAbout = Intent(this, CAbout::class.java)
-//    private val activityCalculator = Intent(this, CCalculator::class.java)
+    // переменная для работы с элементами на макетах mainActivity
+    private lateinit var binding: CmainBinding
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private lateinit var login: TextInputLayout
-    private lateinit var password: TextInputLayout
-    private var loginIn = ""
-    private var passwordIn = ""
-     var user = CPersone("","")
+
+    private var user = CPersone("","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.cmain)
-
-        login = findViewById(R.id.loginInText)
-        password = findViewById(R.id.passwordInText)
-
-        user.login = login.editText?.text.toString()
-        user.password = password.editText?.text.toString()
+        binding = CmainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
 
-        var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {result ->
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
             }
         }
 
-//        val buttonCalculator: Button = findViewById(R.id.calc)
-//        val buttonMap: Button = findViewById(R.id.map)
-        val buttonEnter: Button = findViewById(R.id.enterButton)
-        val buttonAbout: Button = findViewById(R.id.aboutButton)
-
         // обработка кнопок на активности
-//        buttonMap.setOnClickListener {
-//             val activityMap = Intent(this@CMainActivity, CMap::class.java)
-//            startActivity(activityMap)
-//        }
-//        buttonCalculator.setOnClickListener {
-//             val activityCalculator = Intent(this@CMainActivity, CCalculator::class.java)
-//            startActivity(activityCalculator)
-//        }
-        buttonEnter.setOnClickListener {
-             val activityMap = Intent(this@CMainActivity, CMap::class.java)
+        binding.enterButton.setOnClickListener {
+            val activityMap = Intent(this, CMap::class.java)
+            user.login = binding.loginInText.editText?.text.toString()
+            user.password = binding.passwordInText.editText?.text.toString()
+            activityMap.putExtra("MY_LOGIN", user.login)
             resultLauncher.launch(activityMap)
         }
-        buttonAbout.setOnClickListener {
-            val activityAbout = Intent(this@CMainActivity, CAbout::class.java)
+        binding.aboutButton.setOnClickListener {
+            val activityAbout = Intent(this, CAbout::class.java)
 //            startActivity(activityAbout)
             resultLauncher.launch(activityAbout)
         }
@@ -91,14 +71,14 @@ class CMainActivity : AppCompatActivity() {
 //                true
 //            }
             R.id.mCalculator -> {
-                val activityCalculator = Intent(this@CMainActivity, CCalculator::class.java)
+                val activityCalculator = Intent(this, CCalculator::class.java)
                 startActivity(activityCalculator)
 //                resultLauncher.launch(activityCalculator)
                 true
 
             }
             R.id.mAbout -> {
-                val activityAbout = Intent(this@CMainActivity, CAbout::class.java)
+                val activityAbout = Intent(this, CAbout::class.java)
                 startActivity(activityAbout)
 //                resultLauncher.launch(activityAbout)
                 true
