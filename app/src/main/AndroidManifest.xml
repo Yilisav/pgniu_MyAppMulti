@@ -10,63 +10,71 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
         tools:targetApi="31">
 
-<!--        главная активность-->
+        <!-- главная активность -->
         <activity
             android:name=".activities.CMainActivity"
-            android:theme="@style/Theme.My"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.My">
             <intent-filter>
-                <action android:name = "android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name = "android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-<!--        активность калькулятор-->
+        </activity> <!-- активность jobs List -->
         <activity
-            android:name=".activities.CCalculator"
-            android:theme="@style/Theme.MyAppMulti"
+            android:name=".activities.CJobsMain"
             android:exported="false"
-
-            >
+            android:theme="@style/Theme.My">
             <intent-filter>
-                <action android:name = "package.OtherActivity"/>
+                <action android:name="package.OtherActivity" />
 
-                <category android:name = "android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
+        </activity> <!-- активность job info -->
+        <activity
+            android:name=".activities.CJobInfo"
+            android:exported="false"
+            android:theme="@style/Theme.My">
+            <intent-filter>
+                <action android:name="package.OtherActivity" />
 
-<!--        активность карта -->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> <!-- активность карта -->
         <activity
             android:name=".activities.CMap"
-            android:theme="@style/Theme.My"
             android:exported="false"
-            >
+            android:theme="@style/Theme.My">
             <intent-filter>
-                <action android:name = "package.OtherActivity"/>
+                <action android:name="package.OtherActivity" />
 
-                <category android:name = "android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
+        </activity> <!-- активность калькулятор -->
+        <activity
+            android:name=".activities.CCalculator"
+            android:exported="false"
+            android:theme="@style/Theme.MyAppMulti">
+            <intent-filter>
+                <action android:name="package.OtherActivity" />
 
-        <!--        активность о программе-->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> <!-- активность о программе -->
         <activity
             android:name=".activities.CAbout"
-            android:label="@string/about_title"
-            android:gravity="center"
-            android:theme="@style/Theme.AppCompat.Dialog"
             android:exported="false"
-            >
+            android:gravity="center"
+            android:label="@string/about_title"
+            android:theme="@style/Theme.AppCompat.Dialog">
             <intent-filter>
-                <action android:name = "package.OtherActivity"/>
+                <action android:name="package.OtherActivity" />
 
-                <category android:name = "android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

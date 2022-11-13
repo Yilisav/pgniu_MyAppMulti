@@ -9,20 +9,6 @@
     tools:context=".activities.CMainActivity">
 
 
-    <ImageView
-        android:id="@+id/imageHello"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:contentDescription="@string/app_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/main_back_image" />
-
-
-
     <!--    <Button-->
     <!--        android:id="@+id/calc"-->
     <!--        android:background="@drawable/btn_shape_normal"-->
@@ -58,12 +44,23 @@
     <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 
+    <ImageView
+        android:id="@+id/imageHello"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+
+        android:contentDescription="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/main_back_image" />
+
     <com.google.android.material.textfield.TextInputLayout
 
         android:id="@+id/loginInText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-40dp"
+        android:layout_marginTop="-20dp"
         android:maxWidth="200dp"
         android:hint="@string/login"
         app:layout_constraintTop_toBottomOf="@+id/imageHello"
@@ -74,6 +71,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="120"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -93,6 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:maxLength="80"
             />
 
     </com.google.android.material.textfield.TextInputLayout>

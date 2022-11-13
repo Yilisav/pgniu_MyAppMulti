@@ -13,4 +13,7 @@
         android:icon="@drawable/ic_about_24"
         android:title="@string/about_title"
         app:showAsAction="never" />
+    <item android:id="@+id/mExit"
+        android:title="@string/exit"
+        app:showAsAction="never" />
 </menu>

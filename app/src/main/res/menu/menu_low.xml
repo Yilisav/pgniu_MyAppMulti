@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+
+>
+    <item
+        android:id="@+id/page_list"
+        android:icon="@drawable/ic_list_jobs_24"
+        android:title="@string/list"
+        />
+    <item
+        android:id="@+id/page_map"
+        android:icon="@drawable/ic_map_24"
+        android:title="@string/map"
+        />
+</menu>

@@ -1,6 +1,4 @@
-package vik.com.example.myappmulti.person
-
-import javax.security.auth.login.LoginException
+package vik.com.example.myappmulti.Objects
 
 class CPersone (
     var login: String,

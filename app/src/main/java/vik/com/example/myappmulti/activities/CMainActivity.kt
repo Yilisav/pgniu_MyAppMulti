@@ -8,14 +8,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Button
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.google.android.material.textfield.TextInputLayout
 import vik.com.example.myappmulti.R
-import vik.com.example.myappmulti.databinding.CalculatorBinding
 import vik.com.example.myappmulti.databinding.CmainBinding
-import vik.com.example.myappmulti.person.CPersone
+import vik.com.example.myappmulti.Objects.CPersone
 
 
 class CMainActivity : AppCompatActivity() {
@@ -24,7 +21,6 @@ class CMainActivity : AppCompatActivity() {
     private lateinit var binding: CmainBinding
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-
     private var user = CPersone("","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,11 +37,13 @@ class CMainActivity : AppCompatActivity() {
 
         // обработка кнопок на активности
         binding.enterButton.setOnClickListener {
-            val activityMap = Intent(this, CMap::class.java)
+            val activityJobsList = Intent(this, CJobsMain::class.java)
             user.login = binding.loginInText.editText?.text.toString()
             user.password = binding.passwordInText.editText?.text.toString()
-            activityMap.putExtra("MY_LOGIN", user.login)
-            resultLauncher.launch(activityMap)
+//            activityJobsList.putExtra("MY_LOGIN", user.login)
+            binding.loginInText.editText?.setText("")
+            binding.passwordInText.editText?.setText("")
+            resultLauncher.launch(activityJobsList)
         }
         binding.aboutButton.setOnClickListener {
             val activityAbout = Intent(this, CAbout::class.java)
@@ -64,43 +62,37 @@ class CMainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle item selection
         return when (item.itemId) {
-//            R.id.mMap -> {
-//                val activityMap = Intent(this@CMainActivity, CMap::class.java)
-//                //startActivity(activityMap)
-//                resultLauncher.launch(activityMap)
-//                true
-//            }
+
             R.id.mCalculator -> {
                 val activityCalculator = Intent(this, CCalculator::class.java)
-                startActivity(activityCalculator)
-//                resultLauncher.launch(activityCalculator)
+                resultLauncher.launch(activityCalculator)
                 true
-
             }
             R.id.mAbout -> {
                 val activityAbout = Intent(this, CAbout::class.java)
-                startActivity(activityAbout)
-//                resultLauncher.launch(activityAbout)
+                resultLauncher.launch(activityAbout)
                 true
-
+            }
+            R.id.mExit -> {
+                setResult(RESULT_OK)
+                finish()
+                true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
-//    // Сохраняем состояние экранов
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        outState.putString("INPUT",loginIn)
-//        outState.putString("OUTPUT",passwordIn)
-//    }
-//    // Восстанавливаем состояние экранов
-//    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-//        super.onRestoreInstanceState(savedInstanceState)
-//        loginIn = savedInstanceState.getString("INPUT", "")
-//        passwordIn = savedInstanceState.getString("OUTPUT", "")
-//        val loginTextInput: TextInputLayout = findViewById(R.id.loginInText)
-//        val passwordTextView: TextInputLayout = findViewById(R.id.passwordInText)
-//        loginTextInput.editText?.text = loginIn
-//        passwordTextView.text = passwordIn
-//    }
+    // Сохраняем состояние полей ввода
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("LOGIN",binding.loginInText.editText?.text.toString())
+        outState.putString("PASSWORD",binding.passwordInText.editText?.text.toString())
+    }
+    // Восстанавливаем состояние полей ввода
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val login = savedInstanceState.getString("LOGIN", "")
+        val password = savedInstanceState.getString("PASSWORD", "")
+        binding.loginInText.editText?.setText(login)
+        binding.passwordInText.editText?.setText(password)
+    }
 }

@@ -35,15 +35,18 @@
     </style>
 
     <style name="TextAppearance.App.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
-
+        <item name="colorPrimary">@color/grey_200</item>
+         <item name="colorAccent">@color/grey_700</item>
     </style>
 
     <style name="TextAppearance.App.Caption" parent="TextAppearance.MaterialComponents.Caption">
-
+        <item name="colorPrimary">@color/grey_200</item>
+        <item name="colorAccent">@color/grey_700</item>
     </style>
 
     <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">cut</item>
+        <item name="colorPrimary">@color/grey_200</item>
+        <item name="colorAccent">@color/grey_700</item>
         <item name="cornerSize">4dp</item>
     </style>
 

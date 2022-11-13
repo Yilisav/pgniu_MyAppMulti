@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import net.objecthunter.exp4j.ExpressionBuilder
 import vik.com.example.myappmulti.R
 import vik.com.example.myappmulti.databinding.CalculatorBinding
@@ -130,9 +131,20 @@ class CCalculator : AppCompatActivity(){
                 }
             }
         }
+        // обработчик кнопки назад
+        onBackPressedDispatcher.addCallback(
+            this,
+            object : OnBackPressedCallback(true)
+            {
+                override fun handleOnBackPressed()
+                {
+                    setResult(RESULT_OK)
+                    finish()
+                }
+            }
+        )
+    }
 
-
-        }
     // Сохраняем состояние экранов
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

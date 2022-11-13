@@ -10,10 +10,11 @@
 
     <ImageView
         android:id="@+id/imageHello"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="120dp"
         android:layout_marginRight="120dp"
+        android:alpha="0.2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -61,11 +62,11 @@
         android:id="@+id/loginInText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginStart="150dp"
         android:layout_marginEnd="150dp"
         android:hint="@string/login"
-        app:layout_constraintTop_toBottomOf="@+id/imageHello"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
 
         >
@@ -73,6 +74,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLength="120"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -95,6 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:maxLength="80"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -116,12 +119,13 @@
         android:id="@+id/aboutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
         android:background="@drawable/btn_shape_normal"
         android:fontFamily="@font/buxtonsketch"
         android:text="@string/about_title"
-        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:alpha="0.0"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

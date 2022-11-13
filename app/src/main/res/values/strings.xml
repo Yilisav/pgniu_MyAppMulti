@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">MyServiceDesk</string>
     <string name="calculator">CALCULATOR</string>
-    <string name="map">MAP</string>
+    <string name="map">Map</string>
     <string name="about">"The application was developed as part of the course Development of applications for Android (Junior) (05.10.2022 – 02.12.2022 г.)    "</string>
     <string name="close">Close</string>
     <string name="clear">Clear</string>
@@ -29,4 +29,6 @@
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="enter">Enter</string>
+    <string name="exit">Exit</string>
+    <string name="list">List</string>
 </resources>

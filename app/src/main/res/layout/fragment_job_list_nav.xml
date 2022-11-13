@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".screens.job_list_nav">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/listJobs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Spisok zayvok"
+        android:textAlignment="center"
+        android:textSize="@dimen/SizeFontButton" />
+
+<!--    <Button-->
+<!--        android:id="@+id/close"-->
+<!--        android:background="@drawable/btn_shape_normal"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/buxtonsketch"-->
+<!--        android:text="@string/close"-->
+<!--        android:textSize="@dimen/SizeFontButton"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:layout_marginLeft="50dp"-->
+
+ />
+
+</FrameLayout>

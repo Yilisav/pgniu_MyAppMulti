@@ -4,12 +4,14 @@
     <string name="clear">Очистить</string>
     <string name="InputNumber">(05 октября - 02 декабря 2022 г.)</string>
     <string name="about_title"><b>О программе</b></string>
-    <string name="map">" КАРТА "</string>
+    <string name="map">" Карта "</string>
     <string name="calculator">" КАЛЬКУЛЯТОР "</string>
     <string name="about">"Приложение разработано в рамкам прохождения курса Разработка приложений для Android (начальный уровень) (05 октября - 02 декабря 2022 г.)   "</string>
     <string name="mes_longExpression">слишком длинное выражение</string>
     <string name="mes_empty">в строке ввода пусто</string>
     <string name="login">Логин</string>
     <string name="password">Пароль</string>
-    <string name="enter">Вход</string>
+    <string name="enter">Войти</string>
+    <string name="exit">Выход</string>
+    <string name="list">Список</string>
 </resources>
