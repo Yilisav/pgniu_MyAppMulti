@@ -1,27 +1,44 @@
 package vik.com.example.myappmulti.screens
 
+import android.R
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import vik.com.example.myappmulti.databinding.FragmentMapNavBinding
-import vik.com.example.myappmulti.databinding.JobinfoBinding
+import androidx.fragment.app.Fragment
+import com.yandex.mapkit.Animation
+import com.yandex.mapkit.MapKitFactory
+import com.yandex.mapkit.map.CameraPosition
+import com.yandex.mapkit.mapview.MapView
+import vik.com.example.myappmulti.databinding.FragmentMapNavLayoutBinding
 
 
 class map_nav : Fragment() {
 
-    lateinit var binding: FragmentMapNavBinding
+    private lateinit var binding: FragmentMapNavLayoutBinding
+    private var mapview: MapView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMapNavBinding.inflate(layoutInflater, container, false)
+        binding = FragmentMapNavLayoutBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+//            MapKitFactory.setApiKey("340e1f06-59b9-4e22-bd0f-a6c9903da439");
+//            binding.mapview.map!!
+//            //mapview = findViewById(R.id.mapview)
+//            //setContentView(R.layout.activity_main)
+//            // Перемещение камеры в центр Санкт-Петербурга.
+//            binding.mapview?.map!!.move(
+//            CameraPosition(com.yandex.mapkit.geometry.Point(55.751574, 37.573856), 11.0f, 0.0f, 0.0f),
+//            Animation(Animation.Type.SMOOTH, 5F),
+//            null
+//        )
     }
+
 }

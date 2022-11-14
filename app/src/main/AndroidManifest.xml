@@ -43,16 +43,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity> <!-- активность карта -->
-        <activity
-            android:name=".activities.CMap"
-            android:exported="false"
-            android:theme="@style/Theme.My">
-            <intent-filter>
-                <action android:name="package.OtherActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity> <!-- активность калькулятор -->
+       <!-- активность калькулятор -->
         <activity
             android:name=".activities.CCalculator"
             android:exported="false"

@@ -29,7 +29,11 @@
 
             android:textSize="@dimen/SizeFontButton" />
 
-
+<!--        <com.yandex.mapkit.mapview.MapView-->
+<!--            android:id="@+id/mapview"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="300dp"-->
+<!--            />-->
 
     </LinearLayout>
 

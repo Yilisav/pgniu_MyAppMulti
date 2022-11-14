@@ -9,18 +9,14 @@
         android:id="@+id/job_list_nav"
         android:name="vik.com.example.myappmulti.screens.job_list_nav"
         android:label="fragment_job_list_nav"
-        tools:layout="@layout/fragment_job_list_nav" >
-        <action
-            android:id="@+id/action_job_list_nav_to_map_nav"
-            app:destination="@id/map_nav" />
+        tools:layout="@layout/fragment_job_list_nav_layout" >
+
     </fragment>
     <fragment
         android:id="@+id/map_nav"
         android:name="vik.com.example.myappmulti.screens.map_nav"
         android:label="fragment_map_nav"
-        tools:layout="@layout/fragment_map_nav" >
-        <action
-            android:id="@+id/action_map_nav_to_job_list_nav"
-            app:destination="@id/job_list_nav" />
+        tools:layout="@layout/fragment_map_nav_layout" >
+
     </fragment>
 </navigation>

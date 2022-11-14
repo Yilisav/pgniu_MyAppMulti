@@ -11,21 +11,21 @@ import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import vik.com.example.myappmulti.R
-import vik.com.example.myappmulti.databinding.CmainBinding
-import vik.com.example.myappmulti.Objects.CPersone
+import vik.com.example.myappmulti.Objects.ObjPersone
+import vik.com.example.myappmulti.databinding.CmainLayoutBinding
 
 
 class CMainActivity : AppCompatActivity() {
 
     // переменная для работы с элементами на макетах mainActivity
-    private lateinit var binding: CmainBinding
+    private lateinit var binding: CmainLayoutBinding
 
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private var user = CPersone("","")
+    private var user = ObjPersone("","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = CmainBinding.inflate(layoutInflater)
+        binding = CmainLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
 

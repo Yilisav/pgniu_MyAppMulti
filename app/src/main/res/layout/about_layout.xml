@@ -20,21 +20,6 @@
     <!--        app:layout_constraintEnd_toEndOf="parent"-->
     <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/aboutTitle"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginTop="25dp"-->
-    <!--        android:fontFamily="@font/mistral"-->
-    <!--        android:text="@string/about_title"-->
-    <!--        android:textColor="#000000"-->
-    <!--        android:textSize="40sp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-
-    <!--        />-->
-
     <TextView
         android:id="@+id/aboutText"
         android:layout_width="wrap_content"

@@ -4,13 +4,11 @@ package vik.com.example.myappmulti.activities
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import net.objecthunter.exp4j.ExpressionBuilder
 import vik.com.example.myappmulti.R
-import vik.com.example.myappmulti.databinding.CalculatorBinding
+import vik.com.example.myappmulti.databinding.CalculatorLayoutBinding
 
 
 class CCalculator : AppCompatActivity(){
@@ -20,12 +18,12 @@ class CCalculator : AppCompatActivity(){
     private var outScreen = ""
     private var inScreen = ""
     // перменные для работы с кнопакми и  экранами ввода и ввода на макетах калькулятора
-    private lateinit var binding: CalculatorBinding
+    private lateinit var binding: CalculatorLayoutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = CalculatorBinding.inflate(layoutInflater)
+        binding = CalculatorLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // удаление последнего символав строке

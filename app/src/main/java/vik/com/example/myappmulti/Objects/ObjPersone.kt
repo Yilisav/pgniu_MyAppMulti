@@ -1,6 +1,6 @@
 package vik.com.example.myappmulti.Objects
 
-class CPersone (
+class ObjPersone (
     var login: String,
     var password : String
 )

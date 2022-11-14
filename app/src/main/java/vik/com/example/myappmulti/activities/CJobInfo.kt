@@ -8,19 +8,19 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import vik.com.example.myappmulti.R
-import vik.com.example.myappmulti.databinding.JobinfoBinding
-
+import vik.com.example.myappmulti.databinding.JobinfoLayoutBinding
 
 
 class CJobInfo : AppCompatActivity() {
 
-    private lateinit var binding: JobinfoBinding
+    private lateinit var binding: JobinfoLayoutBinding
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
+//    private var mapview: MapView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = JobinfoBinding.inflate(layoutInflater)
+        binding = JobinfoLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // выход из ативности
@@ -28,7 +28,6 @@ class CJobInfo : AppCompatActivity() {
             setResult(RESULT_OK)
             finish()
         }
-
     }
 
     // меню
@@ -54,7 +53,7 @@ class CJobInfo : AppCompatActivity() {
             }
             R.id.mExit -> {
                 setResult(RESULT_OK)
-                finish();
+                finish()
                 true
             }
             else -> super.onOptionsItemSelected(item)
