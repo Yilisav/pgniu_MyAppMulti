@@ -56,16 +56,16 @@ class CJobListNavigator : Fragment() //, View.OnClickListener
         items.add(DealModel(444,"закрыта", "Yanin", "Vova", "Принтер", "Ремонт", "не берет бумагу", "2022-11-11","2022-11-11","Ivanov","Petr"))
 
         /** работа с RecyclerView на макете(виде) frag_job_list_navigator*/
-        recyclerView = binding.recyclerViewDeal
+        recyclerView                   = binding.recyclerViewDeal
         recyclerView.adapter           = CDealAdapter(
 //            Список элементов
             items,
            //Обработчик клика по элементу.
         { index, item ->
             //Вызов активности с информацией по объекту, передача туда параметров.
-            val intent = Intent(requireContext(), CJobInfo::class.java)
+            val intent = Intent(requireContext().applicationContext, CJobInfo::class.java)
                 intent.putExtra("KEY_INDEX", index)
-                intent.putExtra("KEY_ID_SERVICE", item.idService)
+                intent.putExtra("KEY_ID_SERVICE", item.clientLastName)
             resultLauncher.launch(intent)
         },
             //Обработчик клика на кнопку "удалить" элемента.

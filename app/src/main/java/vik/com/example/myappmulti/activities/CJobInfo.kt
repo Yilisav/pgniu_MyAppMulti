@@ -18,8 +18,8 @@ class CJobInfo : AppCompatActivity() {
 
     private lateinit var binding: JobinfoLayoutBinding
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private var idIndex: Int = -1
-    private var idIdService : String = "Empty"
+    private var idIndex: Int = 0
+    private var idClientLastName : String = "Empty"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,20 +33,16 @@ class CJobInfo : AppCompatActivity() {
             }
         }
 
-        var test = 1
         intent.extras?.let{
-             idIndex = it.getInt("KEY_INDEX")
-             idIdService = it.getString("KEY_ID_SERVICE")?:""
-            println(" get param  ")
-            test+=1
-
+            idIndex = it.getInt("KEY_INDEX")
+            idClientLastName = it.getString("KEY_ID_SERVICE")?:""
         }?:run{
             println(" No param ")
             Toast.makeText(this,"Param no access", Toast.LENGTH_SHORT).show()
         }
-        println(" activity true ")
-//        binding.tvLastNameInfo.setText (idIndex)
-//        binding.tvFirstNameInfo.setText (idIndex)
+
+        binding.tvLastNameInfo.text = idClientLastName.toString()
+        binding.tvFirstNameInfo.text = idIndex.toString()
 
 
         // выход из ативности
