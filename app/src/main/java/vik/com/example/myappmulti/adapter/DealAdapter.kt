@@ -1,8 +1,11 @@
 package vik.com.example.myappmulti.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.recyclerview.widget.RecyclerView
+import vik.com.example.myappmulti.activities.CJobInfo
 import vik.com.example.myappmulti.databinding.ItemDealLayoutBinding
 import vik.com.example.myappmulti.model.DealModel
 
@@ -10,7 +13,7 @@ import vik.com.example.myappmulti.model.DealModel
  * Класс адаптер для списка элементов. Содержит логику выбора элементов, логику вывода информации       *
  * об элементе в строку списка.                                                                         *
  *******************************************************************************************************/
-class DealAdapter
+class CDealAdapter
 /********************************************************************************************************
  * Конструктор.                                                                                         *
  * @param items - список элементов данных, информацию по которым нужноо выводить на экран.              *
@@ -19,14 +22,14 @@ class DealAdapter
  *******************************************************************************************************/
     (
         private val items                       : MutableList<DealModel>,
-//        private val onItemClickListener         : (Int, CObject) -> Unit,
-//        private val onItemRemoveListener        : (Int, CObject) -> Unit
-    ) : RecyclerView.Adapter<DealAdapter.DealViewHolder>()
+        private val onItemClickListener         : (Int, DealModel) -> Unit,
+        private val onItemRemoveListener        : (Int, DealModel) -> Unit
+    ) : RecyclerView.Adapter<CDealAdapter.CDealViewHolder>()
     {
     /****************************************************************************************************
      * Вспомогательный класс, оотвечающий за визуальное отображение одного элемента данных.             *
      ***************************************************************************************************/
-    inner class DealViewHolder
+    inner class CDealViewHolder
     /****************************************************************************************************
      * Конструктор.                                                                                     *
      * @param binding - объект, хранящий ссылки на элементы интерфейса с одним элемонтом списка,        *
@@ -35,28 +38,24 @@ class DealAdapter
      * @param onItemRemoveListener - обработчик кликов на кнопку "удалить" элемента списка.             *
      ***************************************************************************************************/
         (
-        private  val binding                  : ItemDealLayoutBinding
-//        private val onItemClickListener     : (Int, DealModel) -> Unit,
-//        private val onItemRemoveListener    : (Int, DealModel) -> Unit
+        private  val binding                  : ItemDealLayoutBinding,
+        private val onItemClickListener       : (Int, DealModel) -> Unit,
+        private val onItemRemoveListener      : (Int, DealModel) -> Unit
         )                                     : RecyclerView.ViewHolder(binding.root)
     {
        /**Элемент данных, который отображается в текущем элементе списка.*/
         private lateinit var item             : DealModel
 
-//        init{
-//            //Обработка клика на все поля элемента, кроме кнопки с корзиной.
-//            binding.rvDeal.setOnClickListener {
-//                onItemClickListener(items.indexOf(item), item)
-//
-//            }
-//            //Обработка клика на кнопку с корзиной
-//           val buttonDelete : ImageButton = binding.rvDeal.findViewById(R.id.delete_deal_but)
-//
-//            buttonDelete.setOnClickListener {
-//                onItemRemoveListener(items.indexOf(item), item)
-//
-//            }
-//        }
+        init{
+            //Обработка клика на все поля элемента, кроме кнопки с корзиной.
+            binding.relativeLayoutItemDeal.setOnClickListener {
+                onItemClickListener(items.indexOf(item), item)
+            }
+            //Обработка клика на кнопку с корзиной
+            binding.deleteDealBut.setOnClickListener {
+                onItemRemoveListener(items.indexOf(item), item)
+            }
+        }
 
         /************************************************************************************************
          * Метод описывает логику вывода элемента данных в строку списка.                               *
@@ -78,13 +77,13 @@ class DealAdapter
      * Указывает, какой файл с разметкой внешнего вида использовать.                                    *
      * @param parent - ссылка на родительский элемент - RecyclerView.                                   *
      ***************************************************************************************************/
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DealViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CDealViewHolder {
        val  binding                             = ItemDealLayoutBinding.inflate(
            LayoutInflater.from(parent.context),parent,false)
-       return DealViewHolder(
+       return CDealViewHolder(
            binding,
-//           onItemClickListener,
-//           onItemRemoveListener
+           onItemClickListener,
+           onItemRemoveListener
        )
     }
     /****************************************************************************************************
@@ -93,7 +92,7 @@ class DealAdapter
      * @param holder - строка списка с управляющими графическими элементами.                            *
      * @param position - порядковый номер элемента данных в списке.                                     *
      ***************************************************************************************************/
-    override fun onBindViewHolder(holder: DealViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CDealViewHolder, position: Int) {
         holder.bind(items[position])
     }
     /****************************************************************************************************

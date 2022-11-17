@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import vik.com.example.myappmulti.R
 import vik.com.example.myappmulti.databinding.JobinfoLayoutBinding
@@ -15,13 +16,25 @@ class CJobInfo : AppCompatActivity() {
 
     private lateinit var binding: JobinfoLayoutBinding
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-//    private var mapview: MapView? = null
+    private var idIndex: Int = -1
+    private var idIdService : String = "Empty"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = JobinfoLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+//        intent.extras?.let{
+//             idIndex = it.getInt("KEY_INDEX")
+//             idIdService = it.getString("KEY_ID_SERVICE")?:""
+//        }?:run{
+//            Toast.makeText(this,"Param no access", Toast.LENGTH_SHORT).show()
+//        }
+        println(" activity true ")
+//        binding.tvLastNameInfo.setText (idIndex)
+//        binding.tvFirstNameInfo.setText (idIndex)
+
 
         // выход из ативности
         binding.close.setOnClickListener{

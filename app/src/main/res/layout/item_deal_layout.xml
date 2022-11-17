@@ -10,7 +10,7 @@
     >
 
     <LinearLayout
-
+        android:id="@+id/linearLayout_item_deal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -19,7 +19,7 @@
 
         >
         <RelativeLayout
-
+            android:id="@+id/relativeLayout_item_deal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.7"

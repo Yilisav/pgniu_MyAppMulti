@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         tools:targetApi="31">
 
-        <!-- главная активность -->
+         <!-- главная активность -->
         <activity
             android:name=".activities.CMainActivity"
             android:exported="true"
@@ -22,7 +22,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity> <!-- активность jobs List -->
+        </activity>
+
+        <!-- активность jobs List -->
         <activity
             android:name=".activities.CJobsMain"
             android:exported="false"
@@ -32,7 +34,9 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity> <!-- активность job info -->
+        </activity>
+
+        <!-- активность job info -->
         <activity
             android:name=".activities.CJobInfo"
             android:exported="false"
@@ -42,8 +46,10 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity> <!-- активность карта -->
-       <!-- активность калькулятор -->
+        </activity>
+
+
+        <!-- активность калькулятор -->
         <activity
             android:name=".activities.CCalculator"
             android:exported="false"
@@ -53,7 +59,10 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity> <!-- активность о программе -->
+        </activity>
+
+
+        <!-- активность о программе -->
         <activity
             android:name=".activities.CAbout"
             android:exported="false"

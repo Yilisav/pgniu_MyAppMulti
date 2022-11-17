@@ -74,6 +74,8 @@ class CMainActivity : AppCompatActivity() {
                 true
             }
             R.id.mExit -> {
+//                val info = Intent(this, CJobInfo::class.java)
+//                resultLauncher.launch(info)
                 setResult(RESULT_OK)
                 finish()
                 true

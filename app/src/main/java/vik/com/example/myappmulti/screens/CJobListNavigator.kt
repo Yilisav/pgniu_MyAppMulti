@@ -1,5 +1,6 @@
 package vik.com.example.myappmulti.screens
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.RecyclerView
-import vik.com.example.myappmulti.adapter.DealAdapter
+import vik.com.example.myappmulti.activities.CJobInfo
+import vik.com.example.myappmulti.adapter.CDealAdapter
 import vik.com.example.myappmulti.databinding.FragmentJobListNavLayoutBinding
 import vik.com.example.myappmulti.model.DealModel
 
@@ -17,15 +20,15 @@ class CJobListNavigator : Fragment() //, View.OnClickListener
     {
     /** @param binding - Объект класса, содержащий ссылки на управляющие графические элементы интерфейса пользователя.*/
     private lateinit var binding            : FragmentJobListNavLayoutBinding
-    private lateinit var resultLauncherInfo : ActivityResultLauncher<Intent>
+    private lateinit var resultLauncher     : ActivityResultLauncher<Intent>
     lateinit var recyclerView               : RecyclerView
-
 
     // Функция вызывается для создания компонентов внутри фрагмента
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View // = inflater.inflate(R.layout.fragment_job_list_nav_layout, container,false)
+    {
         //Связываем код активности с файлом, описывающим макет(вид) активности.
         binding = FragmentJobListNavLayoutBinding.inflate(layoutInflater, container, false )
         return binding.root
@@ -53,53 +56,28 @@ class CJobListNavigator : Fragment() //, View.OnClickListener
         items.add(DealModel(444,"закрыта", "Yanin", "Vova", "Принтер", "Ремонт", "не берет бумагу", "2022-11-11","2022-11-11","Ivanov","Petr"))
 
         /** работа с RecyclerView на макете(виде) frag_job_list_navigator*/
-        recyclerView = binding.rvDeal
-        recyclerView.adapter           = DealAdapter(
+        recyclerView = binding.recyclerViewDeal
+        recyclerView.adapter           = CDealAdapter(
 //            Список элементов
             items,
-//            //Обработчик клика по элементу.
-//            { index, item ->
-//                //Вызов активности с информацией по объекту, передача туда параметров.
-//                val intent                  = Intent(MAIN, CJobInfo::class.java)
-//                intent.putExtra("KEY_INDEX", index)
-//                intent.putExtra("KEY_ID_SERVICE", item.idService)
-//                resultLauncherInfo.launch(intent)
-//            },
-//            //Обработчик клика на кнопку "удалить" элемента.
-//            { index, _ ->
-//                items.removeAt(index)
-//                binding.rvDeal.adapter?.notifyItemRemoved(index)
-//            }
+           //Обработчик клика по элементу.
+        { index, item ->
+            //Вызов активности с информацией по объекту, передача туда параметров.
+            val intent = Intent(requireContext(), CJobInfo::class.java)
+                intent.putExtra("KEY_INDEX", index)
+                intent.putExtra("KEY_ID_SERVICE", item.idService)
+            resultLauncher.launch(intent)
+        },
+            //Обработчик клика на кнопку "удалить" элемента.
+            { index, _ ->
+                items.removeAt(index)
+                binding.recyclerViewDeal.adapter?.notifyItemRemoved(index)
+            }
         )
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+            }
+        }
     }
-
-    /************************************************************************************************
-     * Обработка события завершения активности с информацией по объекту в режиме редактирования     *
-     * существующего объекта.                                                                       *
-     ***********************************************************************************************/
-//    resultLauncherInfo            = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//        if (result.resultCode == Activity.RESULT_OK) {
-//            //Получение параметров из дочерней активности
-//            val data                    : Intent?
-//                    = result.data
-//            val name                    = data?.getStringExtra("KEY_OBJECT_NAME") ?: ""
-//            val index                   = data?.getIntExtra("KEY_INDEX", -1)?: -1
-//            //Если какие-то проблемы с данными, выводи сообщение или как-то обрабатываем.
-//            if (index<0)
-//            {
-//                //TODO Сообщение о проблеме в передаче данных
-//            }
-//            else
-//            {
-//                //Если всё нормально,
-//                //актуализируем объект в списке данных.
-//                items[index].name       = name
-//                //Говорим адаптеру списка, что конкретная единица данных обновлена,
-//                //нужно повторно её вывести на экран.
-//                (binding.rvObjects.adapter as CRecyclerViewAdapterObjects).notifyItemChanged(index)
-//            }
-//        }
-//    }
-
-
 }
