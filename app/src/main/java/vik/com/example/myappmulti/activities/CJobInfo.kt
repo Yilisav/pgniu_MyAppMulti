@@ -1,5 +1,6 @@
 package vik.com.example.myappmulti.activities
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import vik.com.example.myappmulti.R
 import vik.com.example.myappmulti.databinding.JobinfoLayoutBinding
 
@@ -25,12 +27,23 @@ class CJobInfo : AppCompatActivity() {
         binding = JobinfoLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        intent.extras?.let{
-//             idIndex = it.getInt("KEY_INDEX")
-//             idIdService = it.getString("KEY_ID_SERVICE")?:""
-//        }?:run{
-//            Toast.makeText(this,"Param no access", Toast.LENGTH_SHORT).show()
-//        }
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+            }
+        }
+
+        var test = 1
+        intent.extras?.let{
+             idIndex = it.getInt("KEY_INDEX")
+             idIdService = it.getString("KEY_ID_SERVICE")?:""
+            println(" get param  ")
+            test+=1
+
+        }?:run{
+            println(" No param ")
+            Toast.makeText(this,"Param no access", Toast.LENGTH_SHORT).show()
+        }
         println(" activity true ")
 //        binding.tvLastNameInfo.setText (idIndex)
 //        binding.tvFirstNameInfo.setText (idIndex)
