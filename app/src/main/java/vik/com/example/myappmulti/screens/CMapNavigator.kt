@@ -1,19 +1,15 @@
 package vik.com.example.myappmulti.screens
 
-import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.yandex.mapkit.Animation
-import com.yandex.mapkit.MapKitFactory
-import com.yandex.mapkit.map.CameraPosition
 import com.yandex.mapkit.mapview.MapView
 import vik.com.example.myappmulti.databinding.FragmentMapNavLayoutBinding
 
 
-class map_nav : Fragment() {
+class CMapNavigator : Fragment() {
 
     private lateinit var binding: FragmentMapNavLayoutBinding
     private var mapview: MapView? = null

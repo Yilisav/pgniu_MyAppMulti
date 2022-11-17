@@ -11,7 +11,7 @@ import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import vik.com.example.myappmulti.R
-import vik.com.example.myappmulti.Objects.ObjPersone
+import vik.com.example.myappmulti.model.ObjPersone
 import vik.com.example.myappmulti.databinding.CmainLayoutBinding
 
 

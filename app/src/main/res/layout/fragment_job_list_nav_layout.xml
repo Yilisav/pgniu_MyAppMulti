@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".screens.job_list_nav">
+    tools:context=".screens.CJobListNavigator">
 
 <!--    <com.google.android.material.textview.MaterialTextView-->
 <!--        android:id="@+id/listJobs"-->
@@ -17,16 +17,20 @@
 <!--        />-->
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_user"
+        android:id="@+id/rv_deal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingTop="5dp"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:itemCount="9"
-        tools:listitem="@layout/item_user_layout"
+        tools:itemCount="10"
+        tools:listitem="@layout/item_deal_layout"
+        android:layout_marginBottom="56dp"
+
         />
+<!--    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+
 <!--    <Button-->
 <!--        android:id="@+id/close"-->
 <!--        android:background="@drawable/btn_shape_normal"-->

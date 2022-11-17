@@ -1,4 +1,4 @@
-package vik.com.example.myappmulti.Objects
+package vik.com.example.myappmulti.model
 
 class ObjPersone (
     var login: String,

@@ -26,7 +26,7 @@
         <activity
             android:name=".activities.CJobsMain"
             android:exported="false"
-            android:theme="@style/Theme.My">
+            android:theme="@style/Theme.MyAppMulti">
             <intent-filter>
                 <action android:name="package.OtherActivity" />
 
