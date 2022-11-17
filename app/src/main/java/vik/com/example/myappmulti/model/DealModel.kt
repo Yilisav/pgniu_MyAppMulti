@@ -3,7 +3,7 @@ package vik.com.example.myappmulti.model
 class DealModel (
     val idService: Int,
     val serviceStatus: String,
-    val clientLastName: String,
+    var clientLastName: String,
     val clientFirstName: String,
     val service: String,
     val serviceCategory: String,

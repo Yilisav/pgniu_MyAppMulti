@@ -8,42 +8,6 @@
     android:background="@drawable/background"
     tools:context=".activities.CMainActivity">
 
-
-    <!--    <Button-->
-    <!--        android:id="@+id/calc"-->
-    <!--        android:background="@drawable/btn_shape_normal"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginRight="25dp"-->
-    <!--        android:layout_marginLeft="25dp"-->
-    <!--        android:fontFamily="@font/buxtonsketch"-->
-    <!--        android:textSize="@dimen/SizeFontButton"-->
-    <!--        android:text="@string/calculator"-->
-    <!--        android:paddingLeft="10dp"-->
-    <!--        android:paddingRight="10dp"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toStartOf="@+id/map"-->
-    <!--        app:layout_constraintHorizontal_bias="0.5"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--    <Button-->
-    <!--        android:id="@+id/map"-->
-    <!--        android:background="@drawable/btn_shape_normal"-->
-    <!--        android:layout_width="150dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="25dp"-->
-    <!--        android:layout_marginEnd="25dp"-->
-    <!--        android:fontFamily="@font/buxtonsketch"-->
-    <!--        android:textSize="@dimen/SizeFontButton"-->
-    <!--        android:text="@string/map"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintHorizontal_bias="0.5"-->
-    <!--        app:layout_constraintStart_toEndOf="@+id/calc"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
-
     <ImageView
         android:id="@+id/imageHello"
         android:layout_width="300dp"

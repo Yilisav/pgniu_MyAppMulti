@@ -8,6 +8,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import vik.com.example.myappmulti.R
@@ -35,7 +36,7 @@ class CJobInfo : AppCompatActivity() {
 
         intent.extras?.let{
             idIndex = it.getInt("KEY_INDEX")
-            idClientLastName = it.getString("KEY_ID_SERVICE")?:""
+            idClientLastName = it.getString("KEY_CLIENT_LAST_NAME")?:""
         }?:run{
             println(" No param ")
             Toast.makeText(this,"Param no access", Toast.LENGTH_SHORT).show()
@@ -45,9 +46,25 @@ class CJobInfo : AppCompatActivity() {
         binding.tvFirstNameInfo.text = idIndex.toString()
 
 
+
+        onBackPressedDispatcher.addCallback(
+            this, object : OnBackPressedCallback(true){
+                override fun handleOnBackPressed() {
+                    val intent= Intent()
+                    intent.putExtra("KEY_INDEX", idIndex )
+                    intent.putExtra("NEW_NAME", binding.tfLastNameInfo.editText?.text.toString() ?: "")
+                    setResult(RESULT_OK, intent)
+                    finish()
+                }
+            }
+        )
+
         // выход из ативности
         binding.close.setOnClickListener{
-            setResult(RESULT_OK)
+            val intent= Intent()
+            intent.putExtra("KEY_INDEX", idIndex )
+            intent.putExtra("NEW_NAME", binding.tfLastNameInfo.editText?.text.toString() ?: "")
+            setResult(RESULT_OK, intent)
             finish()
         }
     }

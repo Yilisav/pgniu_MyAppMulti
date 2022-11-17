@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +21,7 @@ class CJobListNavigator : Fragment() //, View.OnClickListener
     {
     /** @param binding - Объект класса, содержащий ссылки на управляющие графические элементы интерфейса пользователя.*/
     private lateinit var binding            : FragmentJobListNavLayoutBinding
-    private lateinit var resultLauncher     : ActivityResultLauncher<Intent>
+    private lateinit var resultLauncherInfo     : ActivityResultLauncher<Intent>
     lateinit var recyclerView               : RecyclerView
 
     // Функция вызывается для создания компонентов внутри фрагмента
@@ -38,7 +39,7 @@ class CJobListNavigator : Fragment() //, View.OnClickListener
         super.onViewCreated(view,savedInstanceState)
 
         /**Тестовый список объектов, которые будут выводится пользователю.*/
-        val items = mutableListOf<DealModel>()
+        var items = mutableListOf<DealModel>()
         items.add(DealModel(123,"новая", "Petrov", "Vasya", "Принтер", "Ремонт", "не включается", "2022-09-11","","",""))
         items.add(DealModel(135,"новая", "Arhipov", "Artem", "Компьютер", "Ремонт", "не включается", "2022-01-22","","",""))
         items.add(DealModel(295,"новая", "Sidirov", "Jenya", "Монитор", "Ремонт", "не включается", "2022-11-11","","",""))
@@ -65,8 +66,8 @@ class CJobListNavigator : Fragment() //, View.OnClickListener
             //Вызов активности с информацией по объекту, передача туда параметров.
             val intent = Intent(requireContext().applicationContext, CJobInfo::class.java)
                 intent.putExtra("KEY_INDEX", index)
-                intent.putExtra("KEY_ID_SERVICE", item.clientLastName)
-            resultLauncher.launch(intent)
+                intent.putExtra("KEY_CLIENT_LAST_NAME", item.clientLastName)
+            resultLauncherInfo.launch(intent)
         },
             //Обработчик клика на кнопку "удалить" элемента.
             { index, _ ->
@@ -74,10 +75,18 @@ class CJobListNavigator : Fragment() //, View.OnClickListener
                 binding.recyclerViewDeal.adapter?.notifyItemRemoved(index)
             }
         )
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        resultLauncherInfo = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
-            }
+                val index = data?.getIntExtra("KEY_INDEX",-1) ?: -1
+                val idClientLastName = data?.getStringExtra("NEW_NAME") ?: ""
+                if (index < 0){
+                    println(" No param from Info")
+                } else {
+                }
+                    items[index].clientLastName = idClientLastName
+                    binding.recyclerViewDeal.adapter?.notifyItemChanged(index)
+                }
         }
     }
 }
