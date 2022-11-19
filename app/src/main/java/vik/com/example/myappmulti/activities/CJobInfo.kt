@@ -13,6 +13,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import vik.com.example.myappmulti.R
 import vik.com.example.myappmulti.databinding.JobinfoLayoutBinding
+import vik.com.example.myappmulti.screens.CJobListNavigator
 
 
 class CJobInfo : AppCompatActivity() {
@@ -40,6 +41,8 @@ class CJobInfo : AppCompatActivity() {
         }?:run{
             println(" No param ")
             Toast.makeText(this,"Param no access", Toast.LENGTH_SHORT).show()
+            idIndex = -1
+            idClientLastName = ""
         }
 
             binding.tvLastNameInfo.setText(idClientLastName)
@@ -68,7 +71,7 @@ class CJobInfo : AppCompatActivity() {
     /** выход из ативности обработка процесса    */
     /*********************************************/
     private fun exitActivity() {
-        val intent= Intent()
+        val intent = Intent(this, CJobListNavigator::class.java)
         intent.putExtra("KEY_INDEX", idIndex)
         intent.putExtra("NEW_NAME", binding.tvLastNameInfo.text.toString())
         setResult(RESULT_OK, intent)

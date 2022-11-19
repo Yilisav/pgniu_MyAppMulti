@@ -71,14 +71,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_toRightOf="@id/tv_client_holder"
                 android:layout_below="@+id/tv_status_service_holder"
+                android:layout_toRightOf="@id/tv_client_holder"
                 android:text="LastName"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="italic"
-                app:fontFamily="serif"
-                />
+                app:fontFamily="serif" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_first_name_holder"
@@ -102,8 +101,8 @@
                 android:layout_centerInParent="true"
                 android:text="Id Service"
                 android:textColor="@color/grey_200"
-                android:textStyle="bold|italic"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold|italic" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_number_holder"

@@ -3,35 +3,44 @@ package vik.com.example.myappmulti.screens
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.*
+import android.widget.Button
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import vik.com.example.myappmulti.R
+import vik.com.example.myappmulti.activities.CAbout
+import vik.com.example.myappmulti.activities.CCalculator
 import vik.com.example.myappmulti.activities.CJobInfo
 import vik.com.example.myappmulti.activities.CJobsMain
 import vik.com.example.myappmulti.adapter.CDealAdapter
 import vik.com.example.myappmulti.databinding.FragmentJobListNavLayoutBinding
+import vik.com.example.myappmulti.databinding.JobmainLayoutBinding
 import vik.com.example.myappmulti.model.DealModel
 
 
-class CJobListNavigator : Fragment() //, View.OnClickListener
+class CJobListNavigator : Fragment()
     {
     /** @param binding - Объект класса, содержащий ссылки на управляющие графические элементы интерфейса пользователя.  */
-    private lateinit var binding            : FragmentJobListNavLayoutBinding
-    private lateinit var resultLauncherInfo     : ActivityResultLauncher<Intent>
-    lateinit var recyclerView               : RecyclerView
+    private lateinit var binding             : FragmentJobListNavLayoutBinding
+    private lateinit var resultLauncherEdit  : ActivityResultLauncher<Intent>
+    private lateinit var resultLauncherAdd   : ActivityResultLauncher<Intent>
+    private lateinit var recyclerView        : RecyclerView
+
 
     // Функция вызывается для создания компонентов внутри фрагмента
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View // = inflater.inflate(R.layout.fragment_job_list_nav_layout, container,false)
-    {
+    ): View  {
         //Связываем код активности с файлом, описывающим макет(вид) активности.
         binding = FragmentJobListNavLayoutBinding.inflate(layoutInflater, container, false )
         return binding.root
@@ -66,10 +75,10 @@ class CJobListNavigator : Fragment() //, View.OnClickListener
            //Обработчик клика по элементу.
         { index, item ->
             //Вызов активности с информацией по объекту, передача туда параметров.
-            val intent = Intent(requireContext(), CJobInfo::class.java)
+            val intent = Intent(this.requireContext(), CJobInfo::class.java)
                 intent.putExtra("KEY_INDEX", index)
                 intent.putExtra("KEY_CLIENT_LAST_NAME", item.clientLastName)
-            resultLauncherInfo.launch(intent)
+            resultLauncherEdit.launch(intent)
         },
             //Обработчик клика на кнопку "удалить" элемента.
             { index, _ ->
@@ -77,19 +86,50 @@ class CJobListNavigator : Fragment() //, View.OnClickListener
                 binding.recyclerViewDeal.adapter?.notifyItemRemoved(index)
             }
         )
-        resultLauncherInfo = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
+        // обработка нажатия по кнопке "+" добавить
+//        floatingButton = binding.
+
+        /** обработка объекта при редактированпии */
+        resultLauncherEdit = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
                 val index = data?.getIntExtra("KEY_INDEX",-1)!!.toInt()
                 val idClientLastName = data.getStringExtra("NEW_NAME") ?: ""
-                if (index < 0){
+                if (index < 0){ // если проблемы с полученными данными
                     println(" No param from Info")
-                } else {
+                } else { // если всё нормально
+                    //обновляем объект в списке
                     items[index].clientLastName = idClientLastName
+                    //сообщаем адаптеру об изменениях и необходимости обновления вывода на экран
                     binding.recyclerViewDeal.adapter?.notifyItemChanged(index)
 
                 }
             }
         }
+
+        /** обработка клика по кнопке добавления */
+        binding.fab.setOnClickListener {
+            val intent = Intent(this.requireContext(), CJobInfo::class.java)
+            intent.putExtra("KEY_INDEX", 999)
+            resultLauncherAdd.launch(intent)
+        }
+        /** обработка объекта при добавлении */
+        resultLauncherAdd = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                val indexNew = data?.getIntExtra("KEY_INDEX",-1)!!.toInt()
+                val idClientLastNameNew = data.getStringExtra("NEW_NAME")?:""
+                if (indexNew == 999){
+                //добавляем объект в список
+                items.add(DealModel(999,"new", idClientLastNameNew, "empty", "empty", "empty", "", "","","",""))
+                //сообщаем адаптеру об изменениях и необходимости обновления вывода на экран
+                binding.recyclerViewDeal.adapter?.notifyItemInserted(items.size-1)
+
+                }
+                }
+        }
     }
-}
+
+
+    }

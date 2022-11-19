@@ -9,7 +9,8 @@
         android:title="@string/list"
         />
     <item
-        android:id="@+id/placeholder"
+        android:id="@+id/add_nav"
+
         android:title=""
         />
     <item
@@ -18,3 +19,6 @@
         android:title="@string/map"
         />
 </menu>
+
+<!--    android:icon="@drawable/ic_add_24"-->
+<!--    android:title="@string/add"-->
