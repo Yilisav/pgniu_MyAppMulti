@@ -31,4 +31,6 @@
     <string name="enter">Enter</string>
     <string name="exit">Exit</string>
     <string name="list">List</string>
+    <string name="add_deal">Add deal</string>
+
 </resources>

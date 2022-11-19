@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,24 +26,58 @@
             android:layout_weight="0.7"
             >
 
+
+
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tv_id_service_holder"
+                android:id="@+id/tv_status_service_holder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:text="Id Service"
+                android:text="Status Service"
+                android:textColor="@color/teal_700"
+                android:textSize="15sp"
+
+                app:fontFamily="sans-serif-medium" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_service_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/tv_status_service_holder"
+                android:text="Service"
+                android:textColor="@color/violet_500"
+                android:textSize="15sp"
+                android:textStyle="italic"
+                app:fontFamily="serif" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_client_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_status_service_holder"
+                android:layout_marginStart="-15dp"
+                android:layout_marginEnd="-10dp"
+                android:layout_marginTop="13dp"
+                android:rotation="-90"
+                android:text="клиент"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="10sp"
+                android:textStyle="italic"
+                app:fontFamily="serif"
+                tools:ignore="SmallSp" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_last_name_holder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
+                android:layout_toRightOf="@id/tv_client_holder"
+                android:layout_below="@+id/tv_status_service_holder"
                 android:text="LastName"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-
+                android:textSize="15sp"
+                android:textStyle="italic"
+                app:fontFamily="serif"
                 />
 
             <com.google.android.material.textview.MaterialTextView
@@ -51,18 +86,33 @@
                 android:layout_height="wrap_content"
                 android:text="FirstName"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_below="@id/tv_last_name_holder"
 
+                android:layout_toRightOf="@id/tv_client_holder"
+                android:layout_below="@id/tv_last_name_holder"
+                android:textSize="15dp"
+                android:textStyle="italic"
+                app:fontFamily="serif"
                 />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_id_service_holder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:text="Id Service"
+                android:textColor="@color/grey_200"
+                android:textStyle="bold|italic"
+                android:textSize="20sp" />
+
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tv_number_holder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_centerInParent="true"
                 android:text="№ "
-                android:textColor="@color/black"
+                android:textColor="@color/grey_200"
+                android:textStyle="bold|italic"
                 android:textSize="20sp"
                 android:layout_toStartOf="@id/tv_id_service_holder"
                 />

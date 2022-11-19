@@ -9,8 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name ="red">#FF0000</color>
     <color name="black_200">#100E0E</color>
-
-
+    <color name="violet_500">#5E35B1</color>
 
 
 </resources>

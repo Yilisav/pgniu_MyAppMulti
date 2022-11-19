@@ -42,34 +42,42 @@ class CJobInfo : AppCompatActivity() {
             Toast.makeText(this,"Param no access", Toast.LENGTH_SHORT).show()
         }
 
-        binding.tvLastNameInfo.text = idClientLastName.toString()
-        binding.tvFirstNameInfo.text = idIndex.toString()
+            binding.tvLastNameInfo.setText(idClientLastName)
+            binding.tvFirstNameInfo.text = idIndex.toString()
 
 
-
+        /***************************************************/
+        /** выход из ативности кнопкой назад с сохранением */
+        /***************************************************/
         onBackPressedDispatcher.addCallback(
             this, object : OnBackPressedCallback(true){
                 override fun handleOnBackPressed() {
-                    val intent= Intent()
-                    intent.putExtra("KEY_INDEX", idIndex )
-                    intent.putExtra("NEW_NAME", binding.tfLastNameInfo.editText?.text.toString() ?: "")
-                    setResult(RESULT_OK, intent)
-                    finish()
+                    exitActivity()
                 }
             }
         )
-
-        // выход из ативности
+        /*********************************************/
+        /** выход из ативности кнопкой с сохранением */
+        /*********************************************/
         binding.close.setOnClickListener{
-            val intent= Intent()
-            intent.putExtra("KEY_INDEX", idIndex )
-            intent.putExtra("NEW_NAME", binding.tfLastNameInfo.editText?.text.toString() ?: "")
-            setResult(RESULT_OK, intent)
-            finish()
+            exitActivity()
         }
+
+    }
+    /*********************************************/
+    /** выход из ативности обработка процесса    */
+    /*********************************************/
+    private fun exitActivity() {
+        val intent= Intent()
+        intent.putExtra("KEY_INDEX", idIndex)
+        intent.putExtra("NEW_NAME", binding.tvLastNameInfo.text.toString())
+        setResult(RESULT_OK, intent)
+        finish()
     }
 
-    // меню
+    /****************************/
+    /** верхнее меню в заголовке*/
+    /****************************/
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.menu_main_activity, menu)

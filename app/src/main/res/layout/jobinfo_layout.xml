@@ -12,31 +12,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <com.google.android.material.textview.MaterialTextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tv_last_name_info"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="last name  I N F O"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:layout_gravity="start"
             android:paddingStart="10dp"
-            android:paddingTop="10dp"
+            android:paddingTop="20dp"
             />
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tf_last_name_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Newname"
-            android:layout_marginTop="50dp"
-            >
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:maxLength="120"
-                />
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/tf_last_name_info"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Newname"-->
+<!--           -->
+<!--            >-->
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:maxLength="120"-->
+<!--                />-->
 
-        </com.google.android.material.textfield.TextInputLayout>
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_first_name_info"

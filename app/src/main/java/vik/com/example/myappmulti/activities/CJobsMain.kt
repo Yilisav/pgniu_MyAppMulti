@@ -18,11 +18,12 @@ class CJobsMain : AppCompatActivity() {
         binding = JobmainLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        binding.bottomNavView.background = null
+        //binding.bottomNavView.menu.getItem(1).isEnabled = false
+
         // навигация на нижней панели навигации
-        navController = Navigation.findNavController(this@CJobsMain, R.id.nav_host_fragment)
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         binding.bottomNavView.setupWithNavController(navController)
-
-
 
     }
 }

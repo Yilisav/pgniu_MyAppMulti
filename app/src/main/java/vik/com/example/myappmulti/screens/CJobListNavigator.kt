@@ -10,8 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.RecyclerView
 import vik.com.example.myappmulti.activities.CJobInfo
+import vik.com.example.myappmulti.activities.CJobsMain
 import vik.com.example.myappmulti.adapter.CDealAdapter
 import vik.com.example.myappmulti.databinding.FragmentJobListNavLayoutBinding
 import vik.com.example.myappmulti.model.DealModel
@@ -19,7 +21,7 @@ import vik.com.example.myappmulti.model.DealModel
 
 class CJobListNavigator : Fragment() //, View.OnClickListener
     {
-    /** @param binding - Объект класса, содержащий ссылки на управляющие графические элементы интерфейса пользователя.*/
+    /** @param binding - Объект класса, содержащий ссылки на управляющие графические элементы интерфейса пользователя.  */
     private lateinit var binding            : FragmentJobListNavLayoutBinding
     private lateinit var resultLauncherInfo     : ActivityResultLauncher<Intent>
     lateinit var recyclerView               : RecyclerView
@@ -64,7 +66,7 @@ class CJobListNavigator : Fragment() //, View.OnClickListener
            //Обработчик клика по элементу.
         { index, item ->
             //Вызов активности с информацией по объекту, передача туда параметров.
-            val intent = Intent(requireContext().applicationContext, CJobInfo::class.java)
+            val intent = Intent(requireContext(), CJobInfo::class.java)
                 intent.putExtra("KEY_INDEX", index)
                 intent.putExtra("KEY_CLIENT_LAST_NAME", item.clientLastName)
             resultLauncherInfo.launch(intent)
@@ -78,15 +80,16 @@ class CJobListNavigator : Fragment() //, View.OnClickListener
         resultLauncherInfo = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
-                val index = data?.getIntExtra("KEY_INDEX",-1) ?: -1
-                val idClientLastName = data?.getStringExtra("NEW_NAME") ?: ""
+                val index = data?.getIntExtra("KEY_INDEX",-1)!!.toInt()
+                val idClientLastName = data.getStringExtra("NEW_NAME") ?: ""
                 if (index < 0){
                     println(" No param from Info")
                 } else {
-                }
                     items[index].clientLastName = idClientLastName
                     binding.recyclerViewDeal.adapter?.notifyItemChanged(index)
+
                 }
+            }
         }
     }
 }

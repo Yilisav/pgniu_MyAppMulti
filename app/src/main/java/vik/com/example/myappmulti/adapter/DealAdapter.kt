@@ -66,6 +66,8 @@ class CDealAdapter
         )
         {
             item                                = newItem
+            binding.tvServiceHolder.text        = newItem.service
+            binding.tvStatusServiceHolder.text  = newItem.serviceStatus
             binding.tvFirstNameHolder.text      = newItem.clientFirstName
             binding.tvLastNameHolder.text       = newItem.clientLastName
             binding.tvIdServiceHolder.text      = newItem.idService.toString()
