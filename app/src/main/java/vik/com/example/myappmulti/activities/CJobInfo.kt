@@ -38,15 +38,17 @@ class CJobInfo : AppCompatActivity() {
         intent.extras?.let{
             idIndex = it.getInt("KEY_INDEX")
             idClientLastName = it.getString("KEY_CLIENT_LAST_NAME")?:""
+            // вывод в форму JobInfo
+            binding.tvLastNameInfo.setText(idClientLastName)
+            binding.tvFirstNameInfo.text = idIndex.toString()
         }?:run{
-            println(" No param ")
+            println(" No param from JobListNavigator")
             Toast.makeText(this,"Param no access", Toast.LENGTH_SHORT).show()
             idIndex = -1
             idClientLastName = ""
         }
 
-            binding.tvLastNameInfo.setText(idClientLastName)
-            binding.tvFirstNameInfo.text = idIndex.toString()
+
 
 
         /***************************************************/

@@ -1,15 +1,21 @@
 package vik.com.example.myappmulti.activities
 
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
+import androidx.core.content.ContextCompat
 import vik.com.example.myappmulti.R
 import vik.com.example.myappmulti.model.ObjPersone
 import vik.com.example.myappmulti.databinding.CmainLayoutBinding
@@ -18,18 +24,49 @@ import vik.com.example.myappmulti.databinding.CmainLayoutBinding
 class CMainActivity : AppCompatActivity() {
 
     // переменная для работы с элементами на макетах mainActivity
-    private lateinit var binding: CmainLayoutBinding
-
-    private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private var user = ObjPersone("","")
+    private lateinit var binding                         : CmainLayoutBinding
+    private lateinit var resultLauncher                  : ActivityResultLauncher<Intent>
+    private lateinit var resultLauncherStoragePermission : ActivityResultLauncher<String>
+    private var user                                     = ObjPersone("","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = CmainLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // обработка ответа на запрос доступа к файловой системе
+        resultLauncherStoragePermission = registerForActivityResult(ActivityResultContracts.RequestPermission())
+        {isGranted: Boolean ->
+            if (isGranted){
 
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {result ->
+            }else{
+
+            }
+        }
+        // запрос доступа к файловой системе
+        when {
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                // You can use the API that requires the permission.
+            }
+            ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) -> {
+                // showInContextUI(...)
+                Toast.makeText(this, "Storage access not enabled", Toast.LENGTH_LONG ).show()
+            }
+            else -> {
+                // You can directly ask for the permission.
+                // The registered ActivityResultCallback gets the result of this request.
+                resultLauncherStoragePermission.launch(
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            }
+        }
+
+        // обработка ответа активности JobsMain
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        {result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data: Intent? = result.data
             }
@@ -51,7 +88,12 @@ class CMainActivity : AppCompatActivity() {
             resultLauncher.launch(activityAbout)
         }
 
-    }
+
+
+    } // onCreate}
+
+
+
     // меню
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater

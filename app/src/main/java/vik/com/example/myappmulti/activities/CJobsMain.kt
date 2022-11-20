@@ -1,15 +1,20 @@
 package vik.com.example.myappmulti.activities
 
+import android.Manifest
 import android.app.Activity
 import android.app.job.JobInfo
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.MenuProvider
 import vik.com.example.myappmulti.R
 import androidx.navigation.*
@@ -23,6 +28,7 @@ class CJobsMain : AppCompatActivity() {
     private lateinit var navController      : NavController
     private lateinit var resultLauncherAdd     : ActivityResultLauncher<Intent>
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,6 +41,8 @@ class CJobsMain : AppCompatActivity() {
         // навигация на нижней панели навигации
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         binding.bottomNavView.setupWithNavController(navController)
+
+
 
 //        binding.bottomNavView.menu.getItem(1).setOnMenuItemClickListener {
 //            val activityMap = Intent(this, CJobInfo::class.java)

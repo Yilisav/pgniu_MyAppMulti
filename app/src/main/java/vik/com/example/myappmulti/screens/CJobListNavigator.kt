@@ -1,7 +1,9 @@
 package vik.com.example.myappmulti.screens
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
@@ -10,7 +12,9 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -33,6 +37,7 @@ class CJobListNavigator : Fragment()
     private lateinit var binding             : FragmentJobListNavLayoutBinding
     private lateinit var resultLauncherEdit  : ActivityResultLauncher<Intent>
     private lateinit var resultLauncherAdd   : ActivityResultLauncher<Intent>
+    private lateinit var resultLauncherStoragePermission : ActivityResultLauncher<String>
     private lateinit var recyclerView        : RecyclerView
 
 
@@ -70,16 +75,16 @@ class CJobListNavigator : Fragment()
         /** работа с RecyclerView на макете(виде) frag_job_list_navigator*/
         recyclerView                   = binding.recyclerViewDeal
         recyclerView.adapter           = CDealAdapter(
-//            Список элементов
+            // Список элементов
             items,
-           //Обработчик клика по элементу.
-        { index, item ->
-            //Вызов активности с информацией по объекту, передача туда параметров.
-            val intent = Intent(this.requireContext(), CJobInfo::class.java)
-                intent.putExtra("KEY_INDEX", index)
-                intent.putExtra("KEY_CLIENT_LAST_NAME", item.clientLastName)
-            resultLauncherEdit.launch(intent)
-        },
+           // Обработчик клика по элементу.
+            { index, item ->
+                //Вызов активности с информацией по объекту, передача туда параметров.
+                val intent = Intent(this.requireContext(), CJobInfo::class.java)
+                    intent.putExtra("KEY_INDEX", index)
+                    intent.putExtra("KEY_CLIENT_LAST_NAME", item.clientLastName)
+                resultLauncherEdit.launch(intent)
+            },
             //Обработчик клика на кнопку "удалить" элемента.
             { index, _ ->
                 items.removeAt(index)
@@ -93,11 +98,11 @@ class CJobListNavigator : Fragment()
         /** обработка объекта при редактированпии */
         resultLauncherEdit = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-                val index = data?.getIntExtra("KEY_INDEX",-1)!!.toInt()
-                val idClientLastName = data.getStringExtra("NEW_NAME") ?: ""
+                val data: Intent?       = result.data
+                val index               = data?.getIntExtra("KEY_INDEX",-1)!!.toInt()
+                val idClientLastName    = data.getStringExtra("NEW_NAME") ?: ""
                 if (index < 0){ // если проблемы с полученными данными
-                    println(" No param from Info")
+                    println(" No param from CJobInfo")
                 } else { // если всё нормально
                     //обновляем объект в списке
                     items[index].clientLastName = idClientLastName
@@ -108,7 +113,7 @@ class CJobListNavigator : Fragment()
             }
         }
 
-        /** обработка клика по кнопке добавления */
+        /** обработка клика по кнопке добавления fab*/
         binding.fab.setOnClickListener {
             val intent = Intent(this.requireContext(), CJobInfo::class.java)
             intent.putExtra("KEY_INDEX", 999)
@@ -117,19 +122,21 @@ class CJobListNavigator : Fragment()
         /** обработка объекта при добавлении */
         resultLauncherAdd = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-                val indexNew = data?.getIntExtra("KEY_INDEX",-1)!!.toInt()
-                val idClientLastNameNew = data.getStringExtra("NEW_NAME")?:""
+                val data: Intent?           = result.data
+                val indexNew                = data?.getIntExtra("KEY_INDEX",-1)!!.toInt()
+                val idClientLastNameNew     = data.getStringExtra("NEW_NAME")?:""
                 if (indexNew == 999){
                 //добавляем объект в список
                 items.add(DealModel(999,"new", idClientLastNameNew, "empty", "empty", "empty", "", "","","",""))
                 //сообщаем адаптеру об изменениях и необходимости обновления вывода на экран
                 binding.recyclerViewDeal.adapter?.notifyItemInserted(items.size-1)
-
+                } else {// если проблемы с полученными данными
+                    println(" No param from CJobInfo")
                 }
-                }
+            }
         }
-    }
 
 
-    }
+
+    } //onViewCreated
+} //main class

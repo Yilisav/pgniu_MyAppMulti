@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <!-- Include this permission any time your app needs location information. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Include only if your app benefits from precise location access. -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+<!--    Include this permission any time your app needs use camera.-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false"
+        />
+
+    <!-- Include this permission any time your app needs write data in external memory. ONLY up to Android v.9 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!-- Include this permission any time your app needs read data in external memory. -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +30,7 @@
         android:supportsRtl="true"
         tools:targetApi="31">
 
-         <!-- главная активность -->
+         <!-- main activity login & password -->
         <activity
             android:name=".activities.CMainActivity"
             android:exported="true"
@@ -24,7 +42,7 @@
             </intent-filter>
         </activity>
 
-        <!-- активность jobs List -->
+        <!-- Activity Jobs main for List jobs & Map jobs-->
         <activity
             android:name=".activities.CJobsMain"
             android:exported="false"
@@ -36,7 +54,7 @@
             </intent-filter>
         </activity>
 
-        <!-- активность job info -->
+        <!-- Activity  Job info -->
         <activity
             android:name=".activities.CJobInfo"
             android:exported="false"
@@ -49,7 +67,7 @@
         </activity>
 
 
-        <!-- активность калькулятор -->
+        <!-- Activity calculator -->
         <activity
             android:name=".activities.CCalculator"
             android:exported="false"
@@ -62,7 +80,7 @@
         </activity>
 
 
-        <!-- активность о программе -->
+        <!-- Activity about program -->
         <activity
             android:name=".activities.CAbout"
             android:exported="false"
