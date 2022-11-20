@@ -37,32 +37,11 @@ class CMapNavigator : Fragment() {
         // обработка ответа на запрос доступа к геолокации аппарта
         resultLauncherLocatePermission = registerForActivityResult(ActivityResultContracts.RequestPermission())
         {isGranted: Boolean ->
-            if (isGranted){
-
-            }else{
-
-            }
+            if (isGranted){ }else{ }
         }
+        // запрос на доступ к геолокации
+        checkLocatePermission()
 
-        // запрос доступа к геолокации аппарта
-        when {
-            ContextCompat.checkSelfPermission(
-                this.requireContext(),
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                // You can use the API that requires the permission.
-            }
-            shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
-                // showInContextUI(...)
-                Toast.makeText(this.requireContext(), "Location access not enabled", Toast.LENGTH_LONG ).show()
-        }
-            else -> {
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
-                resultLauncherLocatePermission.launch(
-                    Manifest.permission.ACCESS_FINE_LOCATION)
-            }
-        }
 //            MapKitFactory.setApiKey("340e1f06-59b9-4e22-bd0f-a6c9903da439");
 //            binding.mapview.map!!
 //            //mapview = findViewById(R.id.mapview)
@@ -73,6 +52,25 @@ class CMapNavigator : Fragment() {
 //            Animation(Animation.Type.SMOOTH, 5F),
 //            null
 //        )
+    }
+
+    private fun checkLocatePermission() {
+        // запрос доступа к геолокации аппарта
+        when {
+            ContextCompat.checkSelfPermission(this.requireContext(),Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED -> {
+                // You can use the API that requires the permission.
+            }
+            shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) -> {
+                // // You can use the API without permission
+                Toast.makeText(this.requireContext(), "Location access not enabled", Toast.LENGTH_LONG ).show()
+            }
+            else -> {
+                // You can directly ask for the permission.
+                // The registered ActivityResultCallback gets the result of this request.
+                resultLauncherLocatePermission.launch(
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+            }
+        }
     }
 
 }

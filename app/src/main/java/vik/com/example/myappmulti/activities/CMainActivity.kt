@@ -26,7 +26,7 @@ class CMainActivity : AppCompatActivity() {
     // переменная для работы с элементами на макетах mainActivity
     private lateinit var binding                         : CmainLayoutBinding
     private lateinit var resultLauncher                  : ActivityResultLauncher<Intent>
-    private lateinit var resultLauncherStoragePermission : ActivityResultLauncher<String>
+    private lateinit var resultLauncherStoragePermission : ActivityResultLauncher<Array<String>>
     private var user                                     = ObjPersone("","")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,42 +35,14 @@ class CMainActivity : AppCompatActivity() {
         binding = CmainLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         // обработка ответа на запрос доступа к файловой системе
-        resultLauncherStoragePermission = registerForActivityResult(ActivityResultContracts.RequestPermission())
-        {isGranted: Boolean ->
-            if (isGranted){
-
-            }else{
-
-            }
+        resultLauncherStoragePermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions())
+        {map: Map<String,Boolean> ->
+            if (map[Manifest.permission.WRITE_EXTERNAL_STORAGE] == true){ }else{ }
         }
-        // запрос доступа к файловой системе
-        when {
-            ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED -> {
-                // You can use the API that requires the permission.
-            }
-            ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) -> {
-                // showInContextUI(...)
-                Toast.makeText(this, "Storage access not enabled", Toast.LENGTH_LONG ).show()
-            }
-            else -> {
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
-                resultLauncherStoragePermission.launch(
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            }
-        }
-
-        // обработка ответа активности JobsMain
-        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-        {result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-            }
-        }
+        // запрос на доступ к памяти и камере
+        checkRequestPermission()
 
         // обработка кнопок на активности
         binding.enterButton.setOnClickListener {
@@ -84,15 +56,39 @@ class CMainActivity : AppCompatActivity() {
         }
         binding.aboutButton.setOnClickListener {
             val activityAbout = Intent(this, CAbout::class.java)
-//            startActivity(activityAbout)
             resultLauncher.launch(activityAbout)
         }
-
+        // обработка ответа активности JobsMain
+        resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+        {result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+            }
+        }
 
 
     } // onCreate}
 
-
+    private fun checkRequestPermission() {
+        val allPermissions = listOf(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA
+        )
+//        val askPermission = mutableListOf<String>()
+//        for (i in 0..allPermissions.size){
+//            if (ContextCompat.checkSelfPermission(
+//                    this,
+//                   allPermissions[i]
+//                ) == PackageManager.PERMISSION_DENIED)
+//                askPermission.add(allPermissions[i])
+//        }
+        val askPermission = allPermissions.filter {
+            return@filter ContextCompat.checkSelfPermission(this, it
+            ) == PackageManager.PERMISSION_DENIED }
+        if (askPermission.isNotEmpty()){
+        resultLauncherStoragePermission.launch(askPermission.toTypedArray())}
+    }
 
     // меню
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
