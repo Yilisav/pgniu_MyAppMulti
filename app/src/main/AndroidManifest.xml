@@ -7,7 +7,7 @@
     <!-- Include only if your app benefits from precise location access. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-<!--    Include this permission any time your app needs use camera.-->
+    <!--    Include this permission any time your app needs use camera.-->
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-feature
         android:name="android.hardware.camera"
@@ -34,7 +34,7 @@
         <activity
             android:name=".activities.CMainActivity"
             android:exported="true"
-            android:theme="@style/Theme.My">
+            android:theme="@style/Theme.MyWithBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,7 +58,7 @@
         <activity
             android:name=".activities.CJobInfo"
             android:exported="false"
-            android:theme="@style/Theme.My">
+            android:theme="@style/Theme.MyWithBar">
             <intent-filter>
                 <action android:name="package.OtherActivity" />
 

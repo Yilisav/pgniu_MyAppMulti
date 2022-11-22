@@ -17,6 +17,6 @@
         android:title="@string/about_title"
         app:showAsAction="never" />
     <item android:id="@+id/mExit"
-        android:title="@string/exit"
+        android:title="@string/log_out"
         app:showAsAction="never" />
 </menu>

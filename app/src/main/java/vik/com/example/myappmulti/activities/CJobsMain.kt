@@ -11,6 +11,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
@@ -42,7 +43,17 @@ class CJobsMain : AppCompatActivity() {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         binding.bottomNavView.setupWithNavController(navController)
 
-
+        /************************************************************/
+        /** выход из ативности кнопкой назад без смены пользователя */
+        /************************************************************/
+        onBackPressedDispatcher.addCallback(
+            this, object : OnBackPressedCallback(true){
+                override fun handleOnBackPressed() {
+                    setResult(RESULT_OK)
+                    finish()
+                }
+            }
+        )
 
 //        binding.bottomNavView.menu.getItem(1).setOnMenuItemClickListener {
 //            val activityMap = Intent(this, CJobInfo::class.java)
@@ -63,5 +74,11 @@ class CJobsMain : AppCompatActivity() {
 //        }
 
     }
+    // выход из активности с результатом отмена , для выхода из текущего пользователя
+    fun exitFromJobsMain() {
+        setResult(RESULT_CANCELED)
+        finish()
+    }
+
 }
 

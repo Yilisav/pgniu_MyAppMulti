@@ -4,21 +4,29 @@ package vik.com.example.myappmulti.activities
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
+import android.content.SharedPreferences.Editor
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
+import android.system.Os.remove
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import androidx.core.content.ContextCompat
+import androidx.preference.PreferenceManager
 import vik.com.example.myappmulti.R
 import vik.com.example.myappmulti.model.ObjPersone
 import vik.com.example.myappmulti.databinding.CmainLayoutBinding
+import java.io.File
 
 
 class CMainActivity : AppCompatActivity() {
@@ -27,7 +35,9 @@ class CMainActivity : AppCompatActivity() {
     private lateinit var binding                         : CmainLayoutBinding
     private lateinit var resultLauncher                  : ActivityResultLauncher<Intent>
     private lateinit var resultLauncherStoragePermission : ActivityResultLauncher<Array<String>>
+    private lateinit var pref                            : SharedPreferences
     private var user                                     = ObjPersone("","")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,40 +45,123 @@ class CMainActivity : AppCompatActivity() {
         binding = CmainLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // доступ к SharedPreferences
+        pref = PreferenceManager.getDefaultSharedPreferences(applicationContext)
 
         // обработка ответа на запрос доступа к файловой системе
         resultLauncherStoragePermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions())
         {map: Map<String,Boolean> ->
             if (map[Manifest.permission.WRITE_EXTERNAL_STORAGE] == true){ }else{ }
         }
-        // запрос на доступ к памяти и камере
-        checkRequestPermission()
-
-        // обработка кнопок на активности
-        binding.enterButton.setOnClickListener {
-            val activityJobsList = Intent(this, CJobsMain::class.java)
-            user.login = binding.loginInText.editText?.text.toString()
-            user.password = binding.passwordInText.editText?.text.toString()
-//            activityJobsList.putExtra("MY_LOGIN", user.login)
-            binding.loginInText.editText?.setText("")
-            binding.passwordInText.editText?.setText("")
-            resultLauncher.launch(activityJobsList)
-        }
-        binding.aboutButton.setOnClickListener {
-            val activityAbout = Intent(this, CAbout::class.java)
-            resultLauncher.launch(activityAbout)
-        }
-        // обработка ответа активности JobsMain
+        // обработка ответа от JobsMain
         resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
         {result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
+                //val data: Intent? = result.data
+            }else{
+                with(pref.edit()){
+                    remove(getString(R.string.Login))
+                    apply()
+                }
             }
         }
+        // запрос на доступ к памяти и камере
+        checkRequestPermission()
+
+
+
+        // чтение ранее заполненого имени пользователя
+        val login = pref.getString(getString(R.string.Login), "")
+
+
+        if (login != "")
+        {
+            val activityJobsList = Intent(this, CJobsMain::class.java)
+            resultLauncher.launch(activityJobsList)
+        }
+
+        // обработка кнопок на активности
+        binding.enterButton.setOnClickListener {
+            onLoginClick()
+//            val activityJobsList = Intent(this, CJobsMain::class.java)
+//            val login_in = binding.loginInText.editText?.text.toString()
+//            val password_in = binding.passwordInText.editText?.text.toString()
+//
+////            // чтение ранее заполненого имени пользователя
+//            val login = pref.getString(getString(R.string.Login), "default value ")
+//            val password = pref.getString("MY_PASSWORD", "default value")
+//            binding.loginInText.editText?.setText("")
+//            binding.passwordInText.editText?.setText("")
+//            resultLauncher.launch(activityJobsList)
+        }
+
+
+        binding.aboutButton.setOnClickListener {
+            val activityAbout = Intent(this, CAbout::class.java)
+            startActivity(activityAbout)
+        }
+        // обработка ответа активности JobsMain
+
+
+
+        // запись файла
+//        val file = File(applicationContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "123.txt")
+
+//        file.createNewFile()
+//        Log.d("tetet",file.toString())
+//        val text = listOf("test", "34534  ", "acore dfsd","98765151313")
+//        file.printWriter().use { out ->
+//            text.forEach{
+//                out.println(it)
+//            }
+//        }
+        //чтение файла
+//        val text1 = file.readLines().toList()
+//        Log.d("tetet",text1.joinToString ( "\n" ))
+
+        // запись в преференсе
+//        val pref= PreferenceManager.getDefaultSharedPreferences(applicationContext)
+//        with(pref.edit()){
+//            putInt("KEY_INTI", 123)
+//            putString("KEY_STRINGI", "123")
+//            apply()
+//        }
+//        Log.d("tetet", pref.toString())
+
 
 
     } // onCreate}
 
+    private fun onLoginClick() {
+        val activityJobsList = Intent(this, CJobsMain::class.java)
+        val userName  =  checkLogin(binding.loginInText.editText?.text.toString()?:"",
+            binding.passwordInText.editText?.text.toString()?:"")
+        if (userName == "")
+        {
+            Toast.makeText(this, "неверно",Toast.LENGTH_LONG).show()
+            return
+        }
+        with(pref.edit()){
+            putString(getString(R.string.Login), userName)
+            apply()
+        }
+        // очистка  полей ввода логина и пароля
+        binding.loginInText.editText?.setText("")
+        binding.passwordInText.editText?.setText("")
+        resultLauncher.launch(activityJobsList)
+    }
+
+    // проверка введенного логина
+    private fun checkLogin(
+        login : String,
+        password : String) :String
+    {
+        if (login == "qwe" && password=="2")
+            return "good"
+        return ""
+    }
+
+    /*** обработка запроса доступа к памяти и камере*/
     private fun checkRequestPermission() {
         val allPermissions = listOf(
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -114,8 +207,10 @@ class CMainActivity : AppCompatActivity() {
             R.id.mExit -> {
 //                val info = Intent(this, CJobInfo::class.java)
 //                resultLauncher.launch(info)
-                setResult(RESULT_OK)
-                finish()
+                with(pref.edit()){
+                    remove(getString(R.string.Login))
+                    apply()
+                }
                 true
             }
             else -> super.onOptionsItemSelected(item)

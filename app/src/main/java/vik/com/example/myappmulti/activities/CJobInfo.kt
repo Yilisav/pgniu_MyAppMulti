@@ -12,16 +12,18 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import vik.com.example.myappmulti.R
+import vik.com.example.myappmulti.contrakt.HasCustomTitle
 import vik.com.example.myappmulti.databinding.JobinfoLayoutBinding
 import vik.com.example.myappmulti.screens.CJobListNavigator
+import kotlin.properties.Delegates.notNull
 
 
-class CJobInfo : AppCompatActivity() {
+class CJobInfo : AppCompatActivity(), HasCustomTitle {
 
     private lateinit var binding: JobinfoLayoutBinding
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
-    private var idIndex: Int = 0
-    private var idClientLastName : String = "Empty"
+    private var idIndex by notNull<Int>()
+    private lateinit var idClientLastName : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,7 +106,8 @@ class CJobInfo : AppCompatActivity() {
                 true
             }
             R.id.mExit -> {
-                setResult(RESULT_OK)
+                // выход из активности с результатом отмена , для выхода из текущего пользователя
+                setResult(RESULT_CANCELED)
                 finish()
                 true
             }
@@ -112,4 +115,5 @@ class CJobInfo : AppCompatActivity() {
         }
     }
 
+    override fun getTitleRes(): Int = R.string.Info
 }

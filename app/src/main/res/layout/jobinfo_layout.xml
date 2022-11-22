@@ -7,57 +7,73 @@
     android:layout_height="match_parent"
     tools:context=".activities.CJobInfo"
     >
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbarInfo"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/grey_200"
+
+        app:title="@string/Info"
+        app:titleTextColor="@color/black"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarInfo">
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tv_last_name_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="last name  I N F O"
-            android:textColor="@color/black"
-            android:textSize="20dp"
             android:layout_gravity="start"
             android:paddingStart="10dp"
             android:paddingTop="20dp"
-            />
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/tf_last_name_info"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:hint="Newname"-->
-<!--           -->
-<!--            >-->
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:maxLength="120"-->
-<!--                />-->
+            android:text="familya"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+        <!--        <com.google.android.material.textfield.TextInputLayout-->
+        <!--            android:id="@+id/tf_last_name_info"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:hint="Newname"-->
+        <!--           -->
+        <!--            >-->
+        <!--            <com.google.android.material.textfield.TextInputEditText-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:maxLength="120"-->
+        <!--                />-->
 
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_first_name_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="first name I N F O"
-            android:textColor="@color/black"
-            android:textSize="20dp"
             android:layout_gravity="start"
-            android:paddingStart="10dp"
             android:layout_marginTop="10dp"
-            />
+            android:paddingStart="10dp"
+            android:text="Index"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
 
         <Button
             android:id="@+id/close"
-            android:background="@drawable/btn_shape_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_shape_normal"
             android:fontFamily="@font/buxtonsketch"
             android:text="@string/close"
-            android:layout_gravity="center"
 
 
             android:textSize="@dimen/SizeFontButton" />

@@ -80,7 +80,7 @@ class CJobListNavigator : Fragment()
            // Обработчик клика по элементу.
             { index, item ->
                 //Вызов активности с информацией по объекту, передача туда параметров.
-                val intent = Intent(this.requireContext(), CJobInfo::class.java)
+                val intent = Intent(requireContext(), CJobInfo::class.java)
                     intent.putExtra("KEY_INDEX", index)
                     intent.putExtra("KEY_CLIENT_LAST_NAME", item.clientLastName)
                 resultLauncherEdit.launch(intent)
@@ -110,12 +110,14 @@ class CJobListNavigator : Fragment()
                     binding.recyclerViewDeal.adapter?.notifyItemChanged(index)
 
                 }
+            }else{
+                (requireContext() as CJobsMain).exitFromJobsMain()
             }
         }
 
         /** обработка клика по кнопке добавления fab*/
         binding.fab.setOnClickListener {
-            val intent = Intent(this.requireContext(), CJobInfo::class.java)
+            val intent = Intent(requireContext() as CJobsMain, CJobInfo::class.java)
             intent.putExtra("KEY_INDEX", 999)
             resultLauncherAdd.launch(intent)
         }
@@ -139,4 +141,6 @@ class CJobListNavigator : Fragment()
 
 
     } //onViewCreated
+
+
 } //main class

@@ -16,4 +16,7 @@
     <string name="list">Список</string>
     <string name="add_deal">Добавить обращение</string>
     <string name="add">Добавить</string>
+    <string name="Info">Информация</string>
+    <string name="log_out">Смена пользователя</string>
+    <string name="log_in">Войти</string>
 </resources>
