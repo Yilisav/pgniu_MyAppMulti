@@ -37,5 +37,23 @@
     <string name="Login" translatable="false">MY_LOGIN</string>
     <string name="log_out">Log Out</string>
     <string name="log_in">log in</string>
+    <string name="longitude">longitude</string>
+    <string name="latitude">latitude</string>
+    <string name="address">address</string>
+    <string name="employeeLastName">employee LastName</string>
+    <string name="employeeFirstName">employee FirstName</string>
+    <string name="dateInCome">receipt date</string>
+    <string name="dateExecution">date execution</string>
+    <string name="serviceDescription">service description</string>
+    <string name="serviceCategory">service category</string>
+    <string name="service">service</string>
+    <string name="clientLastName">client LastName</string>
+    <string name="clientFirstName">client FirstName</string>
+    <string name="serviceStatus">service status</string>
+    <string name="idService">NO_Service</string>
+    <string name="InputNewUser">Input new user</string>
+    <string name="minZoom">min zoom</string>
+    <string name="maxZoom">max zoom</string>
+    <string name="WrongLoginOrPassword">Wrong Login Or Password</string>
 
 </resources>

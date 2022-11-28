@@ -33,7 +33,8 @@ class CJobInfo : AppCompatActivity(), HasCustomTitle {
 
         resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
+                //val data: Intent? = result.data
+                println("ok")
             }
         }
 
@@ -41,8 +42,8 @@ class CJobInfo : AppCompatActivity(), HasCustomTitle {
             idIndex = it.getInt("KEY_INDEX")
             idClientLastName = it.getString("KEY_CLIENT_LAST_NAME")?:""
             // вывод в форму JobInfo
-            binding.tvLastNameInfo.setText(idClientLastName)
-            binding.tvFirstNameInfo.text = idIndex.toString()
+            binding.tiClientLastName.editText?.setText(idClientLastName)
+            binding.tiIdService.editText?.setText (idIndex.toString())
         }?:run{
             println(" No param from JobListNavigator")
             Toast.makeText(this,"Param no access", Toast.LENGTH_SHORT).show()
@@ -77,7 +78,7 @@ class CJobInfo : AppCompatActivity(), HasCustomTitle {
     private fun exitActivity() {
         val intent = Intent(this, CJobListNavigator::class.java)
         intent.putExtra("KEY_INDEX", idIndex)
-        intent.putExtra("NEW_NAME", binding.tvLastNameInfo.text.toString())
+        intent.putExtra("NEW_NAME", binding.tiClientLastName.editText?.text.toString())
         setResult(RESULT_OK, intent)
         finish()
     }
@@ -87,7 +88,7 @@ class CJobInfo : AppCompatActivity(), HasCustomTitle {
     /****************************/
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.menu_main_activity, menu)
+        inflater.inflate(R.menu.menu_other_activity, menu)
         return true
     }
     // обработка кнопок меню

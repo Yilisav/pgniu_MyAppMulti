@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screens.CMapNavigator">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,29 +11,72 @@
             android:layout_height="match_parent"
             android:background="@color/grey_200">
 
-<!--        <com.google.android.material.textview.MaterialTextView-->
-<!--            android:id="@+id/listJobs"-->
+                <Button
+                    android:id="@+id/buttonBackPosition"
+                    style="@style/ButtonStyle"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/btn_shape_normal"
+                    android:fontFamily="@font/buxtonsketch"
+                    android:text="@string/bt_dot"
+                    android:textSize="@dimen/SizeFontButton"
+                    android:paddingBottom="5dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonZoomUp"
+                    app:layout_constraintEnd_toEndOf="@+id/mapview"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginEnd="10dp"
+
+                    />
+
+                <Button
+                    android:id="@+id/buttonZoomUp"
+                    style="@style/ButtonStyle"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/btn_shape_normal"
+                    android:fontFamily="@font/buxtonsketch"
+                    android:text="@string/bt_summa"
+                    android:textSize="@dimen/SizeFontButton"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonZoomDown"
+                    app:layout_constraintEnd_toEndOf="@+id/mapview"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginEnd="10dp"
+
+                    />
+
+                <Button
+                    android:id="@+id/buttonZoomDown"
+                    style="@style/ButtonStyle"
+                    android:background="@drawable/btn_shape_normal"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:fontFamily="@font/buxtonsketch"
+                    android:text="@string/bt_difference"
+                    android:textSize="@dimen/SizeFontButton"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/mapview"
+                    app:layout_constraintEnd_toEndOf="@+id/mapview"
+                    android:layout_marginBottom="25dp"
+                    android:layout_marginEnd="10dp"
+                    />
+
+                <com.yandex.mapkit.mapview.MapView
+                    android:id="@+id/mapview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="56dp"
+                    />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/imageMapView"-->
 <!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/map"-->
-<!--            android:textAlignment="center"-->
-<!--            android:textSize="@dimen/SizeFontButton" />-->
-
-<!--        <com.yandex.mapkit.mapview.MapView-->
-<!--            android:id="@+id/mapview"-->
-<!--            android:layout_width="300dp"-->
-<!--            android:layout_height="300dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:scaleType="centerCrop"-->
+<!--            android:src="@drawable/map_image"-->
+<!--            android:contentDescription="@string/map"-->
+<!--            android:layout_marginBottom="55dp"-->
 <!--            />-->
-
-
-        <ImageView
-            android:id="@+id/imageMapView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/map_image"
-            android:contentDescription="@string/map"
-            android:layout_marginBottom="55dp"
-            />
         </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

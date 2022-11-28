@@ -23,6 +23,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
+import com.yandex.mapkit.MapKitFactory
 import vik.com.example.myappmulti.R
 import vik.com.example.myappmulti.model.ObjPersone
 import vik.com.example.myappmulti.databinding.CmainLayoutBinding
@@ -41,6 +42,8 @@ class CMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Активация яндекс карт по ключу
+        MapKitFactory.setApiKey("340e1f06-59b9-4e22-bd0f-a6c9903da439")
 
         binding = CmainLayoutBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -57,7 +60,7 @@ class CMainActivity : AppCompatActivity() {
         resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
         {result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                //val data: Intent? = result.data
+                finish()
             }else{
                 with(pref.edit()){
                     remove(getString(R.string.Login))
@@ -65,7 +68,7 @@ class CMainActivity : AppCompatActivity() {
                 }
             }
         }
-        // запрос на доступ к памяти и камере
+        // запрос на доступ к памяти, камере, местоположению
         checkRequestPermission()
 
 
@@ -138,7 +141,7 @@ class CMainActivity : AppCompatActivity() {
             binding.passwordInText.editText?.text.toString()?:"")
         if (userName == "")
         {
-            Toast.makeText(this, "неверно",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.WrongLoginOrPassword),Toast.LENGTH_LONG).show()
             return
         }
         with(pref.edit()){
@@ -156,14 +159,15 @@ class CMainActivity : AppCompatActivity() {
         login : String,
         password : String) :String
     {
-        if (login == "qwe" && password=="2")
+        if (login == "qwe" && password=="22")
             return "good"
         return ""
     }
 
-    /*** обработка запроса доступа к памяти и камере*/
+    /*** обработка запроса доступа к памяти,камере, местоположению*/
     private fun checkRequestPermission() {
         val allPermissions = listOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA
@@ -211,11 +215,13 @@ class CMainActivity : AppCompatActivity() {
                     remove(getString(R.string.Login))
                     apply()
                 }
+                Toast.makeText(this, getString(R.string.InputNewUser), Toast.LENGTH_LONG).show()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
     // Сохраняем состояние полей ввода
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

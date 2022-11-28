@@ -19,4 +19,22 @@
     <string name="Info">Информация</string>
     <string name="log_out">Смена пользователя</string>
     <string name="log_in">Войти</string>
+    <string name="longitude">долгота</string>
+    <string name="latitude">широта</string>
+    <string name="address">адрес</string>
+    <string name="employeeLastName">фамилия сотрудника</string>
+    <string name="employeeFirstName">имя сотрудника</string>
+    <string name="dateInCome">дата поступления</string>
+    <string name="dateExecution">дата исполнения</string>
+    <string name="serviceDescription">описание проблемы</string>
+    <string name="serviceCategory">категория услуги</string>
+    <string name="service">тип оборудования</string>
+    <string name="clientLastName">фмилия клиента</string>
+    <string name="clientFirstName">имя клиента</string>
+    <string name="serviceStatus">статус услуги</string>
+    <string name="idService">№ обращения</string>
+    <string name="InputNewUser">Введи нового пользователя</string>
+    <string name="minZoom">минимальный зум</string>
+    <string name="maxZoom">максимальный зум</string>
+    <string name="WrongLoginOrPassword">Неверный логин или пароль</string>
 </resources>

@@ -8,10 +8,13 @@ class DealModel (
     val service: String,
     val serviceCategory: String,
     val serviceDescription: String,
-    val dataInCome: String,
-    val dataExecution: String,
+    val dateInCome: String,
+    val dateExecution: String,
     val employeeLastName: String,
     val employeeFirstName: String,
+    val address : String,
+    val latitude: Double,
+    val longitude: Double,
 )
 
 //class DealModel (
