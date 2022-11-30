@@ -11,10 +11,21 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.launch
+import vik.com.example.myappmulti.CApplication
 import vik.com.example.myappmulti.R
 import vik.com.example.myappmulti.contrakt.HasCustomTitle
 import vik.com.example.myappmulti.databinding.JobinfoLayoutBinding
 import vik.com.example.myappmulti.screens.CJobListNavigator
+import vik.com.example.myappmulti.viewmodels.CViewModelActivityList
+import vik.com.example.myappmulti.viewmodels.CViewModelDealInfo
+import vik.com.example.myappmulti.viewmodels.CViewModelFactory
+import java.util.*
 import kotlin.properties.Delegates.notNull
 
 
@@ -24,6 +35,11 @@ class CJobInfo : AppCompatActivity(), HasCustomTitle {
     private lateinit var resultLauncher: ActivityResultLauncher<Intent>
     private var idIndex by notNull<Int>()
     private lateinit var idClientLastName : String
+    private var id : UUID? = null
+
+    private val viewModelInfo: CViewModelDealInfo by viewModels {
+        CViewModelFactory((application as CApplication).repositoryDeals)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,16 +55,52 @@ class CJobInfo : AppCompatActivity(), HasCustomTitle {
         }
 
         intent.extras?.let{
-            idIndex = it.getInt("KEY_INDEX")
-            idClientLastName = it.getString("KEY_CLIENT_LAST_NAME")?:""
-            // вывод в форму JobInfo
-            binding.tiClientLastName.editText?.setText(idClientLastName)
-            binding.tiIdService.editText?.setText (idIndex.toString())
+            val id = UUID.fromString(it.getString("KEY_DEAL_ID"))
+            //val idIndex = it.getInt("KEY_INDEX")
+            //idClientLastName = it.getString("KEY_CLIENT_LAST_NAME")?:""
+
+            // Create a new coroutine in the lifecycleScope
+            lifecycleScope.launch {
+                // repeatOnLifecycle launches the block in a new coroutine every time the
+                // lifecycle is in the STARTED state (or above) and cancels it when it's STOPPED.
+                repeatOnLifecycle(Lifecycle.State.STARTED) {
+                    // Trigger the flow and start listening for values.
+                    // This happens when lifecycle is STARTED and stops
+                    // collecting when the lifecycle is STOPPED
+                    //viewModelInfo.idIndex = idIndex
+                    // прогружаем  объект из БД
+                    viewModelInfo.setId(id)
+
+                    // выводим данные объекта на экран
+
+                    binding.tiIdService.editText?.setText(viewModelInfo.item?.idService.toString()) ?: ""
+                    binding.tiServiceStatus.editText?.setText(viewModelInfo.item?.serviceStatus) ?: ""
+                    binding.tiClientLastName.editText?.setText(viewModelInfo.item?.clientLastName) ?: ""
+                    binding.tiClientFirstName.editText?.setText(viewModelInfo.item?.clientFirstName) ?: ""
+                    binding.tiService.editText?.setText(viewModelInfo.item?.service) ?: ""
+                    binding.tiServiceCategory.editText?.setText(viewModelInfo.item?.serviceCategory) ?: ""
+                    binding.tiServiceDescription.editText?.setText(viewModelInfo.item?.serviceDescription) ?: ""
+                    binding.tiDateInCome.editText?.setText(viewModelInfo.item?.dateInCome) ?: ""
+                    binding.tiDateExecution.editText?.setText(viewModelInfo.item?.dateExecution) ?: ""
+                    binding.tiEmployeeLastName.editText?.setText(viewModelInfo.item?.employeeLastName) ?: ""
+                    binding.tiEmployeeFirstName.editText?.setText(viewModelInfo.item?.employeeFirstName) ?: ""
+                    binding.tiAddress.editText?.setText(viewModelInfo.item?.address) ?: ""
+                    binding.tiLatitude.editText?.setText(viewModelInfo.item?.latitude.toString()) ?: ""
+                    binding.tiLongitude.editText?.setText(viewModelInfo.item?.longitude.toString()) ?: ""
+
+                }
+            }
+
+//            // вывод в форму JobInfo
+//            binding.tiClientLastName.editText?.setText(idClientLastName)
+//            binding.tiIdService.editText?.setText (idIndex.toString())
+
         }?:run{
-            println(" No param from JobListNavigator")
-            Toast.makeText(this,"Param no access", Toast.LENGTH_SHORT).show()
-            idIndex = -1
-            idClientLastName = ""
+            lifecycleScope.launch {
+                viewModelInfo.idIndex = -1
+                viewModelInfo.setId(null)
+                binding.tiClientLastName.editText?.setText("")
+            }
         }
 
 
@@ -76,10 +128,28 @@ class CJobInfo : AppCompatActivity(), HasCustomTitle {
     /** выход из ативности обработка процесса    */
     /*********************************************/
     private fun exitActivity() {
-        val intent = Intent(this, CJobListNavigator::class.java)
-        intent.putExtra("KEY_INDEX", idIndex)
-        intent.putExtra("NEW_NAME", binding.tiClientLastName.editText?.text.toString())
-        setResult(RESULT_OK, intent)
+        //val intent = Intent(this, CJobListNavigator::class.java)
+        //intent.putExtra("KEY_INDEX", viewModelInfo.idIndex)
+        //intent.putExtra("NEW_NAME", binding.tiClientLastName.editText?.text.toString())
+
+        viewModelInfo.save(
+            binding.tiIdService.editText?.text.toString().toInt(),
+            binding.tiServiceStatus.editText?.text.toString(),
+            binding.tiClientLastName.editText?.text.toString(),
+            binding.tiClientFirstName.editText?.text.toString(),
+            binding.tiService.editText?.text.toString(),
+            binding.tiServiceCategory.editText?.text.toString(),
+            binding.tiServiceDescription.editText?.text.toString(),
+            binding.tiDateInCome.editText?.text.toString(),
+            binding.tiDateExecution.editText?.text.toString(),
+            binding.tiEmployeeLastName.editText?.text.toString(),
+            binding.tiEmployeeFirstName.editText?.text.toString(),
+            binding.tiAddress.editText?.text.toString(),
+            binding.tiLatitude.editText?.text.toString().toDouble(),
+            binding.tiLongitude.editText?.text.toString().toDouble(),
+        )
+
+        setResult(RESULT_OK)//, intent)
         finish()
     }
 

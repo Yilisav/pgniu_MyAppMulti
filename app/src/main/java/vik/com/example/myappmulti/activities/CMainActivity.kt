@@ -42,6 +42,7 @@ class CMainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         // Активация яндекс карт по ключу
         MapKitFactory.setApiKey("340e1f06-59b9-4e22-bd0f-a6c9903da439")
 
@@ -159,7 +160,7 @@ class CMainActivity : AppCompatActivity() {
         login : String,
         password : String) :String
     {
-        if (login == "qwe" && password=="22")
+        if (login == "test" && password=="222")
             return "good"
         return ""
     }

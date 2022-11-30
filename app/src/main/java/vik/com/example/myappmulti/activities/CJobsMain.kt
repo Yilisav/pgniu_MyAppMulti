@@ -10,12 +10,17 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.viewModels
 import androidx.navigation.*
 import androidx.navigation.ui.setupWithNavController
 import com.yandex.mapkit.MapKitFactory
+import vik.com.example.myappmulti.CApplication
 import vik.com.example.myappmulti.R
 import vik.com.example.myappmulti.databinding.JobmainLayoutBinding
+import vik.com.example.myappmulti.viewmodels.CViewModelActivityList
+import vik.com.example.myappmulti.viewmodels.CViewModelFactory
 
 
 class CJobsMain : AppCompatActivity() {
@@ -23,6 +28,9 @@ class CJobsMain : AppCompatActivity() {
     private lateinit var navController      : NavController
     private lateinit var resultLauncher     : ActivityResultLauncher<Intent>
 
+//    private val viewModelActivityList: CViewModelActivityList by viewModels {
+//        CViewModelFactory((application as CApplication).repositoryDeals)
+//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

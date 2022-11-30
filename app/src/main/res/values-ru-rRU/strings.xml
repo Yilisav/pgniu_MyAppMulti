@@ -29,7 +29,7 @@
     <string name="serviceDescription">описание проблемы</string>
     <string name="serviceCategory">категория услуги</string>
     <string name="service">тип оборудования</string>
-    <string name="clientLastName">фмилия клиента</string>
+    <string name="clientLastName">фамилия клиента</string>
     <string name="clientFirstName">имя клиента</string>
     <string name="serviceStatus">статус услуги</string>
     <string name="idService">№ обращения</string>
